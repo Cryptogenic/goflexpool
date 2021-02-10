@@ -2,17 +2,17 @@ package api
 
 // WorkerCurrentStats contains hashrate stats - used by multiple endpoints.
 type WorkerCurrentStats struct {
-	EffectiveHashrate int64 `json:"effective_hashrate"`
-	ReportedHashrate  int64 `json:"reported_hashrate"`
+	EffectiveHashrate int `json:"effective_hashrate"`
+	ReportedHashrate  int `json:"reported_hashrate"`
 }
 
 // WorkerDailyStats contains daily hashrate and share stats from the /worker/{address}/{worker}/daily endpoint.
 type WorkerDailyStats struct {
-	EffectiveHashrate int64 `json:"effective_hashrate"`
-	InvalidShares     int64 `json:"invalid_shares"`
-	ReportedHashrate  int64 `json:"reported_hashrate"`
-	StaleShares       int64 `json:"stale_shares"`
-	ValidShares       int64 `json:"valid_shares"`
+	EffectiveHashrate int `json:"effective_hashrate"`
+	InvalidShares     int `json:"invalid_shares"`
+	ReportedHashrate  int `json:"reported_hashrate"`
+	StaleShares       int `json:"stale_shares"`
+	ValidShares       int `json:"valid_shares"`
 }
 
 // WorkerStats contains current and daily stats from the /worker/{address}/{worker}/stats endpoint.
@@ -23,13 +23,13 @@ type WorkerStats struct {
 
 // WorkerChartData contains chart data entries from the /worker/{address}/{worker}/chart endpoint.
 type WorkerChartData struct {
-	Timestamp                int64   `json:"timestamp"`
-	EffectiveHashrate        int64   `json:"effective_hashrate"`
+	Timestamp                int     `json:"timestamp"`
+	EffectiveHashrate        int     `json:"effective_hashrate"`
 	AverageEffectiveHashrate float64 `json:"average_effective_hashrate"`
-	ReportedHashrate         int64   `json:"reported_hashrate"`
-	ValidShares              int64   `json:"valid_shares"`
-	StaleShares              int64   `json:"stale_shares"`
-	InvalidShares            int64   `json:"invalid_shares"`
+	ReportedHashrate         int     `json:"reported_hashrate"`
+	ValidShares              int     `json:"valid_shares"`
+	StaleShares              int     `json:"stale_shares"`
+	InvalidShares            int     `json:"invalid_shares"`
 }
 
 // WorkerGetCurrent takes a mining wallet address and worker name, and gets the current effective and reported hashrate of
@@ -47,8 +47,8 @@ func WorkerGetCurrent(address string, worker string) (WorkerCurrentStats, error)
 
 	responseData := response.Result.(map[string]interface{})
 
-	data.EffectiveHashrate = int64(responseData["effective_hashrate"].(float64))
-	data.ReportedHashrate = int64(responseData["reported_hashrate"].(float64))
+	data.EffectiveHashrate = int(responseData["effective_hashrate"].(float64))
+	data.ReportedHashrate = int(responseData["reported_hashrate"].(float64))
 
 	return data, nil
 }
@@ -69,11 +69,11 @@ func WorkerGetDaily(address string, worker string) (WorkerDailyStats, error) {
 
 	responseData := response.Result.(map[string]interface{})
 
-	data.EffectiveHashrate = int64(responseData["effective_hashrate"].(float64))
-	data.InvalidShares = int64(responseData["invalid_shares"].(float64))
-	data.ReportedHashrate = int64(responseData["reported_hashrate"].(float64))
-	data.StaleShares = int64(responseData["stale_shares"].(float64))
-	data.ValidShares = int64(responseData["valid_shares"].(float64))
+	data.EffectiveHashrate = int(responseData["effective_hashrate"].(float64))
+	data.InvalidShares = int(responseData["invalid_shares"].(float64))
+	data.ReportedHashrate = int(responseData["reported_hashrate"].(float64))
+	data.StaleShares = int(responseData["stale_shares"].(float64))
+	data.ValidShares = int(responseData["valid_shares"].(float64))
 
 	return data, nil
 }
@@ -95,14 +95,14 @@ func WorkerGetStats(address string, worker string) (WorkerStats, error) {
 	currentData := responseData["current"].(map[string]interface{})
 	dailyData := responseData["daily"].(map[string]interface{})
 
-	data.Current.EffectiveHashrate = int64(currentData["effective_hashrate"].(float64))
-	data.Current.ReportedHashrate = int64(currentData["reported_hashrate"].(float64))
+	data.Current.EffectiveHashrate = int(currentData["effective_hashrate"].(float64))
+	data.Current.ReportedHashrate = int(currentData["reported_hashrate"].(float64))
 
-	data.Daily.EffectiveHashrate = int64(dailyData["effective_hashrate"].(float64))
-	data.Daily.InvalidShares = int64(dailyData["invalid_shares"].(float64))
-	data.Daily.ReportedHashrate = int64(dailyData["reported_hashrate"].(float64))
-	data.Daily.StaleShares = int64(dailyData["stale_shares"].(float64))
-	data.Daily.ValidShares = int64(dailyData["valid_shares"].(float64))
+	data.Daily.EffectiveHashrate = int(dailyData["effective_hashrate"].(float64))
+	data.Daily.InvalidShares = int(dailyData["invalid_shares"].(float64))
+	data.Daily.ReportedHashrate = int(dailyData["reported_hashrate"].(float64))
+	data.Daily.StaleShares = int(dailyData["stale_shares"].(float64))
+	data.Daily.ValidShares = int(dailyData["valid_shares"].(float64))
 
 	return data, nil
 }
@@ -126,13 +126,13 @@ func WorkerGetChart(address string, worker string) ([]WorkerChartData, error) {
 		chartData := chartDataPoint.(map[string]interface{})
 
 		data = append(data, WorkerChartData{
-			Timestamp:                int64(chartData["timestamp"].(float64)),
-			EffectiveHashrate:        int64(chartData["effective_hashrate"].(float64)),
+			Timestamp:                int(chartData["timestamp"].(float64)),
+			EffectiveHashrate:        int(chartData["effective_hashrate"].(float64)),
 			AverageEffectiveHashrate: chartData["average_effective_hashrate"].(float64),
-			ReportedHashrate:         int64(chartData["reported_hashrate"].(float64)),
-			ValidShares:              int64(chartData["valid_shares"].(float64)),
-			StaleShares:              int64(chartData["stale_shares"].(float64)),
-			InvalidShares:            int64(chartData["invalid_shares"].(float64)),
+			ReportedHashrate:         int(chartData["reported_hashrate"].(float64)),
+			ValidShares:              int(chartData["valid_shares"].(float64)),
+			StaleShares:              int(chartData["stale_shares"].(float64)),
+			InvalidShares:            int(chartData["invalid_shares"].(float64)),
 		})
 	}
 

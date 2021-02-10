@@ -6,55 +6,55 @@ import (
 
 // PoolHashrate contains pool hashrate stats data from the /pool/hashrate endpoint.
 type PoolHashrate struct {
-	As    int64 `json:"as"`
-	Au    int64 `json:"au"`
-	Eu    int64 `json:"eu"`
-	Sa    int64 `json:"sa"`
-	Total int64 `json:"total"`
-	Us    int64 `json:"us"`
+	As    int `json:"as"`
+	Au    int `json:"au"`
+	Eu    int `json:"eu"`
+	Sa    int `json:"sa"`
+	Total int `json:"total"`
+	Us    int `json:"us"`
 }
 
 // PoolHashrateChartData contains pool data entries from the /pool/hashrateChart endpoint.
 type PoolHashrateChartData struct {
-	As        int64 `json:"as"`
-	Au        int64 `json:"au"`
-	Eu        int64 `json:"eu"`
-	Sa        int64 `json:"sa"`
-	Timestamp int64 `json:"timestamp"`
-	Total     int64 `json:"total"`
-	Us        int64 `json:"us"`
+	As        int `json:"as"`
+	Au        int `json:"au"`
+	Eu        int `json:"eu"`
+	Sa        int `json:"sa"`
+	Timestamp int `json:"timestamp"`
+	Total     int `json:"total"`
+	Us        int `json:"us"`
 }
 
 // PoolBlockCount contains pool block data from the /pool/blockCount endpoint.
 type PoolBlockCount struct {
-	Confirmed   int64 `json:"confirmed"`
-	Unconfirmed int64 `json:"unconfirmed"`
+	Confirmed   int `json:"confirmed"`
+	Unconfirmed int `json:"unconfirmed"`
 }
 
 // PoolBlockData contains paged block data from the /pool/blocks endpoint.
 type PoolBlockData struct {
 	Data         []Block `json:"data"`
-	ItemsPerPage int64   `json:"items_per_page"`
-	TotalItems   int64   `json:"total_items"`
-	TotalPages   int64   `json:"total_pages"`
+	ItemsPerPage int     `json:"items_per_page"`
+	TotalItems   int     `json:"total_items"`
+	TotalPages   int     `json:"total_pages"`
 }
 
 // PoolMinerInfo contains miner data for the top miners from the /pool/topMiners endpoint.
 type PoolMinerInfo struct {
 	Address      string  `json:"address"`
-	Hashrate     int64   `json:"hashrate"`
-	TotalWorkers int64   `json:"total_workers"`
-	Balance      int64   `json:"balance"`
+	Hashrate     int     `json:"hashrate"`
+	TotalWorkers int     `json:"total_workers"`
+	Balance      int     `json:"balance"`
 	PoolDonation float64 `json:"pool_donation"`
-	FirstJoined  int64   `json:"first_joined"`
+	FirstJoined  int     `json:"first_joined"`
 }
 
 // PoolDonatorInfo contains donation data for the top donators from the /pool/topDonators endpoint.
 type PoolDonatorInfo struct {
 	Address      string  `json:"address"`
 	PoolDonation float64 `json:"pool_donation"`
-	TotalDonated int64   `json:"total_donated"`
-	FirstJoined  int64   `json:"first_joined"`
+	TotalDonated int     `json:"total_donated"`
+	FirstJoined  int     `json:"first_joined"`
 }
 
 // PoolAvgLuckRoundTime contains luck data from the /pool/avgLuckRoundtime endpoint.
@@ -78,12 +78,12 @@ func PoolGetHashrate() (PoolHashrate, error) {
 
 	responseData := response.Result.(map[string]interface{})
 
-	data.As = int64(responseData["as"].(float64))
-	data.Au = int64(responseData["au"].(float64))
-	data.Eu = int64(responseData["eu"].(float64))
-	data.Sa = int64(responseData["sa"].(float64))
-	data.Total = int64(responseData["total"].(float64))
-	data.Us = int64(responseData["us"].(float64))
+	data.As = int(responseData["as"].(float64))
+	data.Au = int(responseData["au"].(float64))
+	data.Eu = int(responseData["eu"].(float64))
+	data.Sa = int(responseData["sa"].(float64))
+	data.Total = int(responseData["total"].(float64))
+	data.Us = int(responseData["us"].(float64))
 
 	return data, nil
 }
@@ -107,13 +107,13 @@ func PoolGetHashrateChart() ([]PoolHashrateChartData, error) {
 		statData := statDataPoint.(map[string]interface{})
 
 		data = append(data, PoolHashrateChartData{
-			As:        int64(statData["as"].(float64)),
-			Au:        int64(statData["au"].(float64)),
-			Eu:        int64(statData["eu"].(float64)),
-			Sa:        int64(statData["sa"].(float64)),
-			Timestamp: int64(statData["timestamp"].(float64)),
-			Total:     int64(statData["total"].(float64)),
-			Us:        int64(statData["us"].(float64)),
+			As:        int(statData["as"].(float64)),
+			Au:        int(statData["au"].(float64)),
+			Eu:        int(statData["eu"].(float64)),
+			Sa:        int(statData["sa"].(float64)),
+			Timestamp: int(statData["timestamp"].(float64)),
+			Total:     int(statData["total"].(float64)),
+			Us:        int(statData["us"].(float64)),
 		})
 	}
 
@@ -122,7 +122,7 @@ func PoolGetHashrateChart() ([]PoolHashrateChartData, error) {
 
 // PoolGetMinersOnline gets how many miners are currently active on the pool. Returns the active miner count and nil on
 // success, or -1 and error on failure.
-func PoolGetMinersOnline() (int64, error) {
+func PoolGetMinersOnline() (int, error) {
 	var (
 		response Response
 		err      error
@@ -132,12 +132,12 @@ func PoolGetMinersOnline() (int64, error) {
 		return -1, err
 	}
 
-	return int64(response.Result.(float64)), nil
+	return int(response.Result.(float64)), nil
 }
 
 // PoolGetWorkersOnline gets how many workers are currently active on the pool. Returns the active worker count and nil on
 // success, or -1 and error on failure.
-func PoolGetWorkersOnline() (int64, error) {
+func PoolGetWorkersOnline() (int, error) {
 	var (
 		response Response
 		err      error
@@ -147,7 +147,7 @@ func PoolGetWorkersOnline() (int64, error) {
 		return -1, err
 	}
 
-	return int64(response.Result.(float64)), nil
+	return int(response.Result.(float64)), nil
 }
 
 // PoolGetBlocks takes a page number and gets a list of blocks the pool has mined from that page. Returns a PoolBlockData
@@ -173,25 +173,25 @@ func PoolGetBlocks(page int) (PoolBlockData, error) {
 
 		data.Data = append(data.Data, Block{
 			Hash:                  blockData["hash"].(string),
-			Number:                int64(blockData["number"].(float64)),
+			Number:                int(blockData["number"].(float64)),
 			Type:                  blockData["type"].(string),
 			Miner:                 blockData["miner"].(string),
-			Difficulty:            int64(blockData["difficulty"].(float64)),
-			Timestamp:             int64(blockData["timestamp"].(float64)),
+			Difficulty:            int(blockData["difficulty"].(float64)),
+			Timestamp:             int(blockData["timestamp"].(float64)),
 			Confirmed:             blockData["confirmed"].(bool),
-			RoundTime:             int64(blockData["round_time"].(float64)),
+			RoundTime:             int(blockData["round_time"].(float64)),
 			Luck:                  blockData["number"].(float64),
 			ServerName:            blockData["server_name"].(string),
-			BlockReward:           int64(blockData["block_reward"].(float64)),
-			BlockFees:             int64(blockData["block_fees"].(float64)),
-			UncleInclusionRewards: int64(blockData["uncle_inclusion_rewards"].(float64)),
-			TotalRewards:          int64(blockData["total_rewards"].(float64)),
+			BlockReward:           int(blockData["block_reward"].(float64)),
+			BlockFees:             int(blockData["block_fees"].(float64)),
+			UncleInclusionRewards: int(blockData["uncle_inclusion_rewards"].(float64)),
+			TotalRewards:          int(blockData["total_rewards"].(float64)),
 		})
 	}
 
-	data.ItemsPerPage = int64(responseData["items_per_page"].(float64))
-	data.TotalItems = int64(responseData["total_items"].(float64))
-	data.TotalPages = int64(responseData["total_pages"].(float64))
+	data.ItemsPerPage = int(responseData["items_per_page"].(float64))
+	data.TotalItems = int(responseData["total_items"].(float64))
+	data.TotalPages = int(responseData["total_pages"].(float64))
 
 	return data, nil
 }
@@ -211,8 +211,8 @@ func PoolGetBlockCount() (PoolBlockCount, error) {
 
 	responseData := response.Result.(map[string]interface{})
 
-	data.Confirmed = int64(responseData["confirmed"].(float64))
-	data.Unconfirmed = int64(responseData["unconfirmed"].(float64))
+	data.Confirmed = int(responseData["confirmed"].(float64))
+	data.Unconfirmed = int(responseData["unconfirmed"].(float64))
 
 	return data, nil
 }
@@ -237,11 +237,11 @@ func PoolGetTopMiners() ([]PoolMinerInfo, error) {
 
 		data = append(data, PoolMinerInfo{
 			Address:      minerData["address"].(string),
-			Hashrate:     int64(minerData["hashrate"].(float64)),
-			TotalWorkers: int64(minerData["total_workers"].(float64)),
-			Balance:      int64(minerData["balance"].(float64)),
+			Hashrate:     int(minerData["hashrate"].(float64)),
+			TotalWorkers: int(minerData["total_workers"].(float64)),
+			Balance:      int(minerData["balance"].(float64)),
 			PoolDonation: minerData["pool_donation"].(float64),
-			FirstJoined:  int64(minerData["first_joined"].(float64)),
+			FirstJoined:  int(minerData["first_joined"].(float64)),
 		})
 	}
 
@@ -269,8 +269,8 @@ func PoolGetTopDonators() ([]PoolDonatorInfo, error) {
 		data = append(data, PoolDonatorInfo{
 			Address:      donatorData["address"].(string),
 			PoolDonation: donatorData["pool_donation"].(float64),
-			TotalDonated: int64(donatorData["total_donated"].(float64)),
-			FirstJoined:  int64(donatorData["first_joined"].(float64)),
+			TotalDonated: int(donatorData["total_donated"].(float64)),
+			FirstJoined:  int(donatorData["first_joined"].(float64)),
 		})
 	}
 
@@ -313,9 +313,9 @@ func PoolGetCurrentLuck() (float64, error) {
 	return response.Result.(float64), nil
 }
 
-// PoolGetAverageBlockReward gets the pool's average block reward in gwei. Returns the average block reward as an int64
+// PoolGetAverageBlockReward gets the pool's average block reward in gwei. Returns the average block reward as an int
 // and nil on success, or -1 and error on failure.
-func PoolGetAverageBlockReward() (int64, error) {
+func PoolGetAverageBlockReward() (int, error) {
 	var (
 		response Response
 		err      error
@@ -325,5 +325,5 @@ func PoolGetAverageBlockReward() (int64, error) {
 		return -1, err
 	}
 
-	return int64(response.Result.(float64)), nil
+	return int(response.Result.(float64)), nil
 }

@@ -7,28 +7,28 @@ import (
 // Block contains information relevant to blocks mined - used by multiple endpoints.
 type Block struct {
 	Hash                  string  `json:"hash"`
-	Number                int64   `json:"number"`
+	Number                int     `json:"number"`
 	Type                  string  `json:"type"`
 	Miner                 string  `json:"miner"`
-	Difficulty            int64   `json:"difficulty"`
-	Timestamp             int64   `json:"timestamp"`
+	Difficulty            int     `json:"difficulty"`
+	Timestamp             int     `json:"timestamp"`
 	Confirmed             bool    `json:"confirmed"`
-	RoundTime             int64   `json:"round_time"`
+	RoundTime             int     `json:"round_time"`
 	Luck                  float64 `json:"luck"`
 	ServerName            string  `json:"server_name"`
-	BlockReward           int64   `json:"block_reward"`
-	BlockFees             int64   `json:"block_fees"`
-	UncleInclusionRewards int64   `json:"uncle_inclusion_rewards"`
-	TotalRewards          int64   `json:"total_rewards"`
+	BlockReward           int     `json:"block_reward"`
+	BlockFees             int     `json:"block_fees"`
+	UncleInclusionRewards int     `json:"uncle_inclusion_rewards"`
+	TotalRewards          int     `json:"total_rewards"`
 }
 
 // MinerDailyStats contains miner daily stats data from the /miner/{address}/stats and /miner/{address}/daily endpoint.
 type MinerDailyStats struct {
 	EffectiveHashrate float64 `json:"effective_hashrate"`
-	InvalidShares     int64   `json:"invalid_shares"`
+	InvalidShares     int     `json:"invalid_shares"`
 	ReportedHashrate  float64 `json:"reported_hashrate"`
-	StaleShares       int64   `json:"stale_shares"`
-	ValidShares       int64   `json:"valid_shares"`
+	StaleShares       int     `json:"stale_shares"`
+	ValidShares       int     `json:"valid_shares"`
 }
 
 // MinerDailyStats contains miner stats data from the /miner/{address}/stats endpoint.
@@ -39,83 +39,83 @@ type MinerStats struct {
 
 // MinerWorkerCount contains worker count data from the /miner/{address}/workerCount endpoint.
 type MinerWorkerCount struct {
-	Online  int64 `json:"online"`
-	Offline int64 `json:"offline"`
+	Online  int `json:"online"`
+	Offline int `json:"offline"`
 }
 
 // MinerWorker contains worker data entries from the /miner/{address}/workers endpoint.
 type MinerWorker struct {
 	Name                   string `json:"name"`
 	Online                 bool   `json:"online"`
-	DuplicateWorkersMerged int64  `json:"duplicate_workers_merged"`
-	ReportedHashrate       int64  `json:"reported_hashrate"`
-	EffectiveHashrate      int64  `json:"effective_hashrate"`
-	ValidShares            int64  `json:"valid_shares"`
-	StaleShares            int64  `json:"stale_shares"`
-	InvalidShares          int64  `json:"invalid_shares"`
-	LastSeen               int64  `json:"last_seen"`
+	DuplicateWorkersMerged int    `json:"duplicate_workers_merged"`
+	ReportedHashrate       int    `json:"reported_hashrate"`
+	EffectiveHashrate      int    `json:"effective_hashrate"`
+	ValidShares            int    `json:"valid_shares"`
+	StaleShares            int    `json:"stale_shares"`
+	InvalidShares          int    `json:"invalid_shares"`
+	LastSeen               int    `json:"last_seen"`
 }
 
 // MinerChartData contains chart data entries from the /miner/{address}/chart endpoint.
 type MinerChartData struct {
-	Timestamp                int64   `json:"timestamp"`
-	EffectiveHashrate        int64   `json:"effective_hashrate"`
+	Timestamp                int     `json:"timestamp"`
+	EffectiveHashrate        int     `json:"effective_hashrate"`
 	AverageEffectiveHashrate float64 `json:"average_effective_hashrate"`
-	ReportedHashrate         int64   `json:"reported_hashrate"`
-	ValidShares              int64   `json:"valid_shares"`
-	StaleShares              int64   `json:"stale_shares"`
-	InvalidShares            int64   `json:"invalid_shares"`
+	ReportedHashrate         int     `json:"reported_hashrate"`
+	ValidShares              int     `json:"valid_shares"`
+	StaleShares              int     `json:"stale_shares"`
+	InvalidShares            int     `json:"invalid_shares"`
 }
 
 // MinerPayment contains payment entries from the /miner/{address}/payments endpoint.
 type MinerPayment struct {
 	Txid      string `json:"txid"`
-	Amount    int64  `json:"amount"`
-	Timestamp int64  `json:"timestamp"`
-	Duration  int64  `json:"duration"`
+	Amount    int    `json:"amount"`
+	Timestamp int    `json:"timestamp"`
+	Duration  int    `json:"duration"`
 }
 
 // MinerPaymentData contains paged payment data from the /miner/{address}/payments endpoint.
 type MinerPaymentData struct {
 	Data         []MinerPayment `json:"data"`
-	ItemsPerPage int64          `json:"items_per_page"`
-	TotalItems   int64          `json:"total_items"`
-	TotalPages   int64          `json:"total_pages"`
+	ItemsPerPage int            `json:"items_per_page"`
+	TotalItems   int            `json:"total_items"`
+	TotalPages   int            `json:"total_pages"`
 }
 
 // MinerPaymentChart contains payment chart data from the /miner/{address}/paymentsChart endpoint.
 type MinerPaymentChart struct {
-	Amount    int64 `json:"amount"`
-	Timestamp int64 `json:"timestamp"`
+	Amount    int `json:"amount"`
+	Timestamp int `json:"timestamp"`
 }
 
 // MinerBlockData contains paged block data from the /miner/{address}/blocks endpoint.
 type MinerBlockData struct {
 	Data         []Block `json:"data"`
-	ItemsPerPage int64   `json:"items_per_page"`
-	TotalItems   int64   `json:"total_items"`
-	TotalPages   int64   `json:"total_pages"`
+	ItemsPerPage int     `json:"items_per_page"`
+	TotalItems   int     `json:"total_items"`
+	TotalPages   int     `json:"total_pages"`
 }
 
 // MinerBlockCount contains block count data from the /miner/{address}/blockCount endpoint.
 type MinerBlockCount struct {
-	Confirmed   int64 `json:"confirmed"`
-	Unconfirmed int64 `json:"unconfirmed"`
+	Confirmed   int `json:"confirmed"`
+	Unconfirmed int `json:"unconfirmed"`
 }
 
 // MinerDetails contains overview data from the /miner/{address}/details endpoint.
 type MinerDetails struct {
-	MinPayoutThreshold int64   `json:"min_payout_threshold"`
+	MinPayoutThreshold int     `json:"min_payout_threshold"`
 	PoolDonation       float64 `json:"pool_donation"`
-	MaxFeePrice        int64   `json:"max_free_price"`
+	MaxFeePrice        int     `json:"max_free_price"`
 	CensoredEmail      string  `json:"censored_email"`
 	CensoredIp         string  `json:"censored_ip"`
-	FirstJoined        int64   `json:"first_joined"`
+	FirstJoined        int     `json:"first_joined"`
 }
 
 // MinerGetBalance takes a mining wallet address and gets the balance in gwei. Returns the balance and nil on success,
 // or -1 and error on failure.
-func MinerGetBalance(address string) (int64, error) {
+func MinerGetBalance(address string) (int, error) {
 	var (
 		response Response
 		err      error
@@ -125,7 +125,7 @@ func MinerGetBalance(address string) (int64, error) {
 		return -1, err
 	}
 
-	return int64(response.Result.(float64)), nil
+	return int(response.Result.(float64)), nil
 }
 
 // MinerGetCurrent takes a mining wallet address and gets the current effective and reported hashrate of that address.
@@ -141,8 +141,8 @@ func MinerGetCurrent(address string) (WorkerCurrentStats, error) {
 		return data, err
 	}
 
-	data.EffectiveHashrate = int64(response.Result.(map[string]interface{})["effective_hashrate"].(float64))
-	data.ReportedHashrate = int64(response.Result.(map[string]interface{})["reported_hashrate"].(float64))
+	data.EffectiveHashrate = int(response.Result.(map[string]interface{})["effective_hashrate"].(float64))
+	data.ReportedHashrate = int(response.Result.(map[string]interface{})["reported_hashrate"].(float64))
 
 	return data, nil
 }
@@ -163,8 +163,8 @@ func MinerGetDaily(address string) (MinerDailyStats, error) {
 
 	data.ReportedHashrate = response.Result.(map[string]interface{})["reported_hashrate"].(float64)
 	data.EffectiveHashrate = response.Result.(map[string]interface{})["effective_hashrate"].(float64)
-	data.StaleShares = int64(response.Result.(map[string]interface{})["stale_shares"].(float64))
-	data.ValidShares = int64(response.Result.(map[string]interface{})["valid_shares"].(float64))
+	data.StaleShares = int(response.Result.(map[string]interface{})["stale_shares"].(float64))
+	data.ValidShares = int(response.Result.(map[string]interface{})["valid_shares"].(float64))
 
 	return data, nil
 }
@@ -186,14 +186,14 @@ func MinerGetStats(address string) (MinerStats, error) {
 	currentData := responseData["current"].(map[string]interface{})
 	dailyData := responseData["daily"].(map[string]interface{})
 
-	data.Current.EffectiveHashrate = int64(currentData["effective_hashrate"].(float64))
-	data.Current.ReportedHashrate = int64(currentData["reported_hashrate"].(float64))
+	data.Current.EffectiveHashrate = int(currentData["effective_hashrate"].(float64))
+	data.Current.ReportedHashrate = int(currentData["reported_hashrate"].(float64))
 
 	data.Daily.EffectiveHashrate = dailyData["effective_hashrate"].(float64)
-	data.Daily.InvalidShares = int64(dailyData["invalid_shares"].(float64))
+	data.Daily.InvalidShares = int(dailyData["invalid_shares"].(float64))
 	data.Daily.ReportedHashrate = dailyData["reported_hashrate"].(float64)
-	data.Daily.StaleShares = int64(dailyData["stale_shares"].(float64))
-	data.Daily.ValidShares = int64(dailyData["valid_shares"].(float64))
+	data.Daily.StaleShares = int(dailyData["stale_shares"].(float64))
+	data.Daily.ValidShares = int(dailyData["valid_shares"].(float64))
 
 	return data, nil
 }
@@ -213,8 +213,8 @@ func MinerGetWorkerCount(address string) (MinerWorkerCount, error) {
 
 	responseData := response.Result.(map[string]interface{})
 
-	data.Offline = int64(responseData["offline"].(float64))
-	data.Online = int64(responseData["online"].(float64))
+	data.Offline = int(responseData["offline"].(float64))
+	data.Online = int(responseData["online"].(float64))
 
 	return data, nil
 }
@@ -241,13 +241,13 @@ func MinerGetWorkers(address string) ([]MinerWorker, error) {
 			data = append(data, MinerWorker{
 				Name:                   workerData["name"].(string),
 				Online:                 workerData["online"].(bool),
-				DuplicateWorkersMerged: int64(workerData["duplicate_workers_merged"].(float64)),
-				ReportedHashrate:       int64(workerData["reported_hashrate"].(float64)),
-				EffectiveHashrate:      int64(workerData["effective_hashrate"].(float64)),
-				ValidShares:            int64(workerData["valid_shares"].(float64)),
-				StaleShares:            int64(workerData["stale_shares"].(float64)),
-				InvalidShares:          int64(workerData["invalid_shares"].(float64)),
-				LastSeen:               int64(workerData["last_seen"].(float64)),
+				DuplicateWorkersMerged: int(workerData["duplicate_workers_merged"].(float64)),
+				ReportedHashrate:       int(workerData["reported_hashrate"].(float64)),
+				EffectiveHashrate:      int(workerData["effective_hashrate"].(float64)),
+				ValidShares:            int(workerData["valid_shares"].(float64)),
+				StaleShares:            int(workerData["stale_shares"].(float64)),
+				InvalidShares:          int(workerData["invalid_shares"].(float64)),
+				LastSeen:               int(workerData["last_seen"].(float64)),
 			})
 		}
 	}
@@ -274,13 +274,13 @@ func MinerGetChart(address string) ([]MinerChartData, error) {
 		chartData := chart.(map[string]interface{})
 
 		data = append(data, MinerChartData{
-			Timestamp:                int64(chartData["timestamp"].(float64)),
-			EffectiveHashrate:        int64(chartData["effective_hashrate"].(float64)),
+			Timestamp:                int(chartData["timestamp"].(float64)),
+			EffectiveHashrate:        int(chartData["effective_hashrate"].(float64)),
 			AverageEffectiveHashrate: chartData["average_effective_hashrate"].(float64),
-			ReportedHashrate:         int64(chartData["reported_hashrate"].(float64)),
-			ValidShares:              int64(chartData["valid_shares"].(float64)),
-			StaleShares:              int64(chartData["stale_shares"].(float64)),
-			InvalidShares:            int64(chartData["invalid_shares"].(float64)),
+			ReportedHashrate:         int(chartData["reported_hashrate"].(float64)),
+			ValidShares:              int(chartData["valid_shares"].(float64)),
+			StaleShares:              int(chartData["stale_shares"].(float64)),
+			InvalidShares:            int(chartData["invalid_shares"].(float64)),
 		})
 	}
 
@@ -310,23 +310,23 @@ func MinerGetPayments(address string, page int) (MinerPaymentData, error) {
 
 			data.Data = append(data.Data, MinerPayment{
 				Txid:      paymentData["txid"].(string),
-				Amount:    int64(paymentData["amount"].(float64)),
-				Timestamp: int64(paymentData["timestamp"].(float64)),
-				Duration:  int64(paymentData["duration"].(float64)),
+				Amount:    int(paymentData["amount"].(float64)),
+				Timestamp: int(paymentData["timestamp"].(float64)),
+				Duration:  int(paymentData["duration"].(float64)),
 			})
 		}
 	}
 
-	data.ItemsPerPage = int64(responseData["items_per_page"].(float64))
-	data.TotalItems = int64(responseData["total_items"].(float64))
-	data.TotalPages = int64(responseData["total_pages"].(float64))
+	data.ItemsPerPage = int(responseData["items_per_page"].(float64))
+	data.TotalItems = int(responseData["total_items"].(float64))
+	data.TotalPages = int(responseData["total_pages"].(float64))
 
 	return data, nil
 }
 
 // MinerGetPaymentCount takes a mining wallet address and gets the number of payments made to that address. Returns the
-// number of payments as an int64 and nil on success, or -1 and error on failure.
-func MinerGetPaymentCount(address string) (int64, error) {
+// number of payments as an int and nil on success, or -1 and error on failure.
+func MinerGetPaymentCount(address string) (int, error) {
 	var (
 		response Response
 		err      error
@@ -336,7 +336,7 @@ func MinerGetPaymentCount(address string) (int64, error) {
 		return -1, err
 	}
 
-	return int64(response.Result.(float64)), nil
+	return int(response.Result.(float64)), nil
 }
 
 // MinerGetPaymentChart takes a mining wallet address and gets a list of payments made to that address. Returns a slice of
@@ -358,8 +358,8 @@ func MinerGetPaymentChart(address string) ([]MinerPaymentChart, error) {
 		paymentData := payment.(map[string]interface{})
 
 		data = append(data, MinerPaymentChart{
-			Amount:    int64(paymentData["amount"].(float64)),
-			Timestamp: int64(paymentData["timestamp"].(float64)),
+			Amount:    int(paymentData["amount"].(float64)),
+			Timestamp: int(paymentData["timestamp"].(float64)),
 		})
 	}
 
@@ -389,33 +389,33 @@ func MinerGetBlocks(address string, page int) (MinerBlockData, error) {
 
 			data.Data = append(data.Data, Block{
 				Hash:                  blockData["hash"].(string),
-				Number:                int64(blockData["number"].(float64)),
+				Number:                int(blockData["number"].(float64)),
 				Type:                  blockData["type"].(string),
 				Miner:                 blockData["miner"].(string),
-				Difficulty:            int64(blockData["difficulty"].(float64)),
-				Timestamp:             int64(blockData["timestamp"].(float64)),
+				Difficulty:            int(blockData["difficulty"].(float64)),
+				Timestamp:             int(blockData["timestamp"].(float64)),
 				Confirmed:             blockData["confirmed"].(bool),
-				RoundTime:             int64(blockData["round_time"].(float64)),
+				RoundTime:             int(blockData["round_time"].(float64)),
 				Luck:                  blockData["difficulty"].(float64),
 				ServerName:            blockData["server_name"].(string),
-				BlockReward:           int64(blockData["block_reward"].(float64)),
-				BlockFees:             int64(blockData["block_fees"].(float64)),
-				UncleInclusionRewards: int64(blockData["uncle_inclusion_rewards"].(float64)),
-				TotalRewards:          int64(blockData["total_rewards"].(float64)),
+				BlockReward:           int(blockData["block_reward"].(float64)),
+				BlockFees:             int(blockData["block_fees"].(float64)),
+				UncleInclusionRewards: int(blockData["uncle_inclusion_rewards"].(float64)),
+				TotalRewards:          int(blockData["total_rewards"].(float64)),
 			})
 		}
 	}
 
-	data.ItemsPerPage = int64(responseData["items_per_page"].(float64))
-	data.TotalItems = int64(responseData["total_items"].(float64))
-	data.TotalPages = int64(responseData["total_pages"].(float64))
+	data.ItemsPerPage = int(responseData["items_per_page"].(float64))
+	data.TotalItems = int(responseData["total_items"].(float64))
+	data.TotalPages = int(responseData["total_pages"].(float64))
 
 	return data, nil
 }
 
 // MinerGetBlockCount takes a mining wallet address and gets the number of blocks mined by that address. Returns the number
-// of blocks mined as an int64 and nil on success, or -1 and error on failure.
-func MinerGetBlockCount(address string) (int64, error) {
+// of blocks mined as an int and nil on success, or -1 and error on failure.
+func MinerGetBlockCount(address string) (int, error) {
 	var (
 		response Response
 		err      error
@@ -425,7 +425,7 @@ func MinerGetBlockCount(address string) (int64, error) {
 		return -1, err
 	}
 
-	return int64(response.Result.(float64)), nil
+	return int(response.Result.(float64)), nil
 }
 
 // MinerGetDetails takes a mining wallet address and gets the overall meta details of that wallet. Returns a MinerDetails
@@ -443,19 +443,19 @@ func MinerGetDetails(address string) (MinerDetails, error) {
 
 	responseData := response.Result.(map[string]interface{})
 
-	data.MinPayoutThreshold = int64(responseData["min_payout_threshold"].(float64))
+	data.MinPayoutThreshold = int(responseData["min_payout_threshold"].(float64))
 	data.PoolDonation = responseData["pool_donation"].(float64)
-	data.MaxFeePrice = int64(responseData["max_fee_price"].(float64))
+	data.MaxFeePrice = int(responseData["max_fee_price"].(float64))
 	data.CensoredEmail = responseData["censored_email"].(string)
 	data.CensoredIp = responseData["censored_ip"].(string)
-	data.FirstJoined = int64(responseData["first_joined"].(float64))
+	data.FirstJoined = int(responseData["first_joined"].(float64))
 
 	return data, nil
 }
 
 // MinerGetEstimatedDailyRevenue takes a mining address and gets the estimated daily revenue in gwei. Returns the estimated
-// daily revenue as an int64 and nil on success, or -1 and error on failure.
-func MinerGetEstimatedDailyRevenue(address string) (int64, error) {
+// daily revenue as an int and nil on success, or -1 and error on failure.
+func MinerGetEstimatedDailyRevenue(address string) (int, error) {
 	var (
 		response Response
 		err      error
@@ -465,7 +465,7 @@ func MinerGetEstimatedDailyRevenue(address string) (int64, error) {
 		return -1, err
 	}
 
-	return int64(response.Result.(float64)), nil
+	return int(response.Result.(float64)), nil
 }
 
 // MinerGetRoundShare takes a mining address and gets the current round share in percentage. Returns the round share as
@@ -484,8 +484,8 @@ func MinerGetRoundShare(address string) (float64, error) {
 }
 
 // MinerGetTotalPaid takes a mining address and gets the total amount of gwei paid to that address. Returns the amount paid
-// as an int64 and nil on success, or -1 and error on failure.
-func MinerGetTotalPaid(address string) (int64, error) {
+// as an int and nil on success, or -1 and error on failure.
+func MinerGetTotalPaid(address string) (int, error) {
 	var (
 		response Response
 		err      error
@@ -495,12 +495,12 @@ func MinerGetTotalPaid(address string) (int64, error) {
 		return -1, err
 	}
 
-	return int64(response.Result.(float64)), nil
+	return int(response.Result.(float64)), nil
 }
 
 // MinerGetTotalDonated takes a mining address and gets the total amount of gwei donated from that address to the pool.
-// Returns the amount donated as an int64 and nil on success, or -1 and error on failure.
-func MinerGetTotalDonated(address string) (int64, error) {
+// Returns the amount donated as an int and nil on success, or -1 and error on failure.
+func MinerGetTotalDonated(address string) (int, error) {
 	var (
 		response Response
 		err      error
@@ -510,5 +510,5 @@ func MinerGetTotalDonated(address string) (int64, error) {
 		return -1, err
 	}
 
-	return int64(response.Result.(float64)), nil
+	return int(response.Result.(float64)), nil
 }
