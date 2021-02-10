@@ -21,7 +21,7 @@ func CalculatePPLNSShareWindow(N int, shareDifficulty int, poolHashrate int) int
 
 // CalculateUncleRate takes a slice of api.Block instances and returns the uncle rate as a percentage as a float64.
 func CalculateUncleRate(blocks []api.Block) float64 {
-	uncleBlocks := 0
+	uncleBlocks := float64(0)
 
 	for _, block := range blocks {
 		if block.Type == "uncle" {
@@ -29,7 +29,7 @@ func CalculateUncleRate(blocks []api.Block) float64 {
 		}
 	}
 
-	return float64(uncleBlocks / len(blocks))
+	return uncleBlocks / float64(len(blocks))
 }
 
 // CalculateAverageBlockReward takes a slice of api.Block instances and calculates the average reward per block in gwei
