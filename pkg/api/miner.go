@@ -125,7 +125,9 @@ func MinerGetBalance(address string) (uint, error) {
 		return 0, err
 	}
 
-	return uint(response.Result.(float64)), nil
+	wei := response.Result.(float64)
+	gwei := wei * Utils.WeiRatio
+	return uint(gwei), nil
 }
 
 // MinerGetCurrent takes a mining wallet address and gets the current effective and reported hashrate of that address.
@@ -310,7 +312,7 @@ func MinerGetPayments(address string, page int) (MinerPaymentData, error) {
 
 			data.Data = append(data.Data, MinerPayment{
 				Txid:      paymentData["txid"].(string),
-				Amount:    uint(paymentData["amount"].(float64)),
+				Amount:    uint(paymentData["amount"].(float64) * utils.WeiRatio),
 				Timestamp: uint(paymentData["timestamp"].(float64)),
 				Duration:  uint(paymentData["duration"].(float64)),
 			})
@@ -358,7 +360,7 @@ func MinerGetPaymentChart(address string) ([]MinerPaymentChart, error) {
 		paymentData := payment.(map[string]interface{})
 
 		data = append(data, MinerPaymentChart{
-			Amount:    uint(paymentData["amount"].(float64)),
+			Amount:    uint(paymentData["amount"].(float64) * utils.WeiRatio),
 			Timestamp: uint(paymentData["timestamp"].(float64)),
 		})
 	}
@@ -398,10 +400,10 @@ func MinerGetBlocks(address string, page int) (MinerBlockData, error) {
 				RoundTime:             uint(blockData["round_time"].(float64)),
 				Luck:                  blockData["difficulty"].(float64),
 				ServerName:            blockData["server_name"].(string),
-				BlockReward:           uint(blockData["block_reward"].(float64)),
-				BlockFees:             uint(blockData["block_fees"].(float64)),
-				UncleInclusionRewards: uint(blockData["uncle_inclusion_rewards"].(float64)),
-				TotalRewards:          uint(blockData["total_rewards"].(float64)),
+				BlockReward:           uint(blockData["block_reward"].(float64) * utils.WeiRatio),
+				BlockFees:             uint(blockData["block_fees"].(float64) * utils.WeiRatio),
+				UncleInclusionRewards: uint(blockData["uncle_inclusion_rewards"].(float64) * utils.WeiRatio),
+				TotalRewards:          uint(blockData["total_rewards"].(float64) * utils.WeiRatio),
 			})
 		}
 	}
@@ -443,7 +445,7 @@ func MinerGetDetails(address string) (MinerDetails, error) {
 
 	responseData := response.Result.(map[string]interface{})
 
-	data.MinPayoutThreshold = uint(responseData["min_payout_threshold"].(float64))
+	data.MinPayoutThreshold = uint(responseData["min_payout_threshold"].(float64) * utils.WeiRatio)
 	data.PoolDonation = responseData["pool_donation"].(float64)
 	data.MaxFeePrice = uint(responseData["max_fee_price"].(float64))
 	data.CensoredEmail = responseData["censored_email"].(string)
@@ -455,7 +457,7 @@ func MinerGetDetails(address string) (MinerDetails, error) {
 
 // MinerGetEstimatedDailyRevenue takes a mining address and gets the estimated daily revenue in gwei. Returns the estimated
 // daily revenue as an int and nil on success, or 0 and error on failure.
-func MinerGetEstimatedDailyRevenue(address string) (int, error) {
+func MinerGetEstimatedDailyRevenue(address string) (uint, error) {
 	var (
 		response Response
 		err      error
@@ -465,7 +467,9 @@ func MinerGetEstimatedDailyRevenue(address string) (int, error) {
 		return 0, err
 	}
 
-	return int(response.Result.(float64)), nil
+	wei := response.Result.(float64)
+	gwei := wei * Utils.WeiRatio
+	return uint(gwei), nil
 }
 
 // MinerGetRoundShare takes a mining address and gets the current round share in percentage. Returns the round share as
@@ -485,7 +489,7 @@ func MinerGetRoundShare(address string) (float64, error) {
 
 // MinerGetTotalPaid takes a mining address and gets the total amount of gwei paid to that address. Returns the amount paid
 // as an int and nil on success, or 0 and error on failure.
-func MinerGetTotalPaid(address string) (int, error) {
+func MinerGetTotalPaid(address string) (uint, error) {
 	var (
 		response Response
 		err      error
@@ -495,12 +499,14 @@ func MinerGetTotalPaid(address string) (int, error) {
 		return 0, err
 	}
 
-	return int(response.Result.(float64)), nil
+	wei := response.Result.(float64)
+	gwei := wei * Utils.WeiRatio
+	return uint(gwei), nil
 }
 
 // MinerGetTotalDonated takes a mining address and gets the total amount of gwei donated from that address to the pool.
 // Returns the amount donated as an int and nil on success, or -0 and error on failure.
-func MinerGetTotalDonated(address string) (int, error) {
+func MinerGetTotalDonated(address string) (uint, error) {
 	var (
 		response Response
 		err      error
@@ -510,5 +516,7 @@ func MinerGetTotalDonated(address string) (int, error) {
 		return -0, err
 	}
 
-	return int(response.Result.(float64)), nil
+	wei := response.Result.(float64)
+	gwei := wei * Utils.WeiRatio
+	return uint(gwei), nil
 }

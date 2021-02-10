@@ -1,6 +1,7 @@
 package api
 
 import (
+	"github.com/cryptogenic/goflexpool/pkg/utils"
 	"strconv"
 )
 
@@ -182,10 +183,10 @@ func PoolGetBlocks(page int) (PoolBlockData, error) {
 			RoundTime:             uint(blockData["round_time"].(float64)),
 			Luck:                  blockData["number"].(float64),
 			ServerName:            blockData["server_name"].(string),
-			BlockReward:           uint(blockData["block_reward"].(float64)),
-			BlockFees:             uint(blockData["block_fees"].(float64)),
-			UncleInclusionRewards: uint(blockData["uncle_inclusion_rewards"].(float64)),
-			TotalRewards:          uint(blockData["total_rewards"].(float64)),
+			BlockReward:           uint(blockData["block_reward"].(float64) * Utils.WeiRatio),
+			BlockFees:             uint(blockData["block_fees"].(float64) * Utils.WeiRatio),
+			UncleInclusionRewards: uint(blockData["uncle_inclusion_rewards"].(float64) * Utils.WeiRatio),
+			TotalRewards:          uint(blockData["total_rewards"].(float64) * Utils.WeiRatio),
 		})
 	}
 
@@ -239,7 +240,7 @@ func PoolGetTopMiners() ([]PoolMinerInfo, error) {
 			Address:      minerData["address"].(string),
 			Hashrate:     uint(minerData["hashrate"].(float64)),
 			TotalWorkers: int(minerData["total_workers"].(float64)),
-			Balance:      uint(minerData["balance"].(float64)),
+			Balance:      uint(minerData["balance"].(float64) * Utils.WeiRatio),
 			PoolDonation: minerData["pool_donation"].(float64),
 			FirstJoined:  uint(minerData["first_joined"].(float64)),
 		})
@@ -269,7 +270,7 @@ func PoolGetTopDonators() ([]PoolDonatorInfo, error) {
 		data = append(data, PoolDonatorInfo{
 			Address:      donatorData["address"].(string),
 			PoolDonation: donatorData["pool_donation"].(float64),
-			TotalDonated: uint(donatorData["total_donated"].(float64)),
+			TotalDonated: uint(donatorData["total_donated"].(float64) * Utils.WeiRatio),
 			FirstJoined:  uint(donatorData["first_joined"].(float64)),
 		})
 	}
