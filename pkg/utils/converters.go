@@ -64,7 +64,7 @@ func ConvertHashrate(inputHashrate uint, inputHashrateUnit HashrateUnit, outputH
 		return hashesPerSecond / uint(math.Pow10(PetaPow10Exponential))
 	}
 
-	return -1
+	return 0
 }
 
 // ConvertGweiToEth takes a gwei value as an int and returns it's value in ethereum as a float64.
