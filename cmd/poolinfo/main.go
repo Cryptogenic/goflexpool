@@ -5,8 +5,6 @@ import (
 	"os"
 	"time"
 
-	//"time"
-
 	"github.com/cryptogenic/goflexpool/pkg/api"
 	"github.com/cryptogenic/goflexpool/pkg/utils"
 )
@@ -85,15 +83,15 @@ func main() {
 	// Do pretty printing
 	fmt.Printf("Flexpool Stats\n-\n\n")
 	fmt.Printf("Miners: %d (Workers: %d)\n\n", poolMinerCount, poolWorkerCount)
-	fmt.Printf("Hashrate: %vGH/s\n", poolHashrateTotalGHs)
+	fmt.Printf("Hashrate: %vGH/s (total)\n", poolHashrateTotalGHs)
 	fmt.Printf("\tAs: %vGH/s\n", poolHashrateAsGHs)
 	fmt.Printf("\tAu: %vGH/s\n", poolHashrateAuGHs)
 	fmt.Printf("\tEu: %vGH/s\n", poolHashrateEuGHs)
 	fmt.Printf("\tSa: %vGH/s\n", poolHashrateSaGHs)
 	fmt.Printf("\tUs: %vGH/s\n\n", poolHashrateUsGHs)
 
-	fmt.Printf("PPLNS share window: %s (%d)\n", secondsToHhMmSs(pplnsShareWindowSeconds), pplnsShareWindowSeconds)
+	fmt.Printf("PPLNS share window: %s (hh:mm:ss)\n", secondsToHhMmSs(pplnsShareWindowSeconds))
 	fmt.Printf("Uncle rate: %.2f%%\n", uncleRate*100)
-	fmt.Printf("Average blocks per day: %d (average reward: %.8f)\n", averageBlocksPerDay, averageBlockRewardEth)
+	fmt.Printf("Average blocks per day: %d (average reward: %.8f eth)\n", averageBlocksPerDay, averageBlockRewardEth)
 	fmt.Printf("\t* Averages and uncle rate are over a 100 block period")
 }

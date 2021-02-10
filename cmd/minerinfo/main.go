@@ -100,12 +100,12 @@ func main() {
 	fmt.Printf("Flexpool Miner '%s' Stats\n-\n\n", minerAddress)
 	fmt.Printf("Unpaid Balance: %.8f\n", balanceEth)
 
-	fmt.Printf("Min Payout Threshold: %.4f \t\t Donation Percent: %.4f \t Round Share: %.8f\n",
+	fmt.Printf("Min Payout Threshold: %.4f eth \t\t Donation Percent: %.4f% \t Round Share: %.8f%\n",
 		utils.ConvertGweiToEth(metaDetails.MinPayoutThreshold),
 		metaDetails.PoolDonation,
 		roundShare)
 
-	fmt.Printf("Estimated Daily Eth: %.8f \t Total Paid: %.8f \t Total Donated: %.8f\n\n",
+	fmt.Printf("Estimated Daily Eth: %.8f eth \t Total Paid: %.8f eth \t Total Donated: %.8f eth\n\n",
 		utils.ConvertGweiToEth(dailyEstimatedEth),
 		utils.ConvertGweiToEth(totalPaidEth),
 		utils.ConvertGweiToEth(totalDonatedEth))
@@ -129,7 +129,7 @@ func main() {
 
 	if paymentData.Data != nil {
 		for _, payment := range paymentData.Data {
-			fmt.Printf("\t Txn: %s (amount: %.8feth) \t %s\n",
+			fmt.Printf("\t Txn: %s (amount: %.8f eth) \t %s\n",
 				payment.Txid,
 				utils.ConvertGweiToEth(payment.Amount),
 				time.Unix(int64(payment.Timestamp), 0))
