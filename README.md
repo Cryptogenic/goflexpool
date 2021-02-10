@@ -7,7 +7,7 @@ goflexpool is an unofficial Golang binding for interacting with the [flexpool](h
 
 `minerinfo` - Gets information about a miner on the pool, including their meta-details, worker information, payments, and blocks mined.
 
-To get a full listing, see the generated [godocs](#). To see more information about usage of the example binaries, see their respective readme files.
+To get a full listing, see the generated [godocs](https://github.com/Cryptogenic/goflexpool/tree/master/docs). To see more information about usage of the example binaries, see their respective readme files.
 
 ## Getting Started
 This project has cross-platform build support out of the box due to the nature of Golang. To use this library in your own project, simply use `go get` to install and/or update this library.
