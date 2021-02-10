@@ -6,23 +6,23 @@ import (
 
 // PoolHashrate contains pool hashrate stats data from the /pool/hashrate endpoint.
 type PoolHashrate struct {
-	As    int `json:"as"`
-	Au    int `json:"au"`
-	Eu    int `json:"eu"`
-	Sa    int `json:"sa"`
-	Total int `json:"total"`
-	Us    int `json:"us"`
+	As    uint `json:"as"`
+	Au    uint `json:"au"`
+	Eu    uint `json:"eu"`
+	Sa    uint `json:"sa"`
+	Total uint `json:"total"`
+	Us    uint `json:"us"`
 }
 
 // PoolHashrateChartData contains pool data entries from the /pool/hashrateChart endpoint.
 type PoolHashrateChartData struct {
-	As        int `json:"as"`
-	Au        int `json:"au"`
-	Eu        int `json:"eu"`
-	Sa        int `json:"sa"`
-	Timestamp int `json:"timestamp"`
-	Total     int `json:"total"`
-	Us        int `json:"us"`
+	As        uint `json:"as"`
+	Au        uint `json:"au"`
+	Eu        uint `json:"eu"`
+	Sa        uint `json:"sa"`
+	Timestamp uint `json:"timestamp"`
+	Total     uint `json:"total"`
+	Us        uint `json:"us"`
 }
 
 // PoolBlockCount contains pool block data from the /pool/blockCount endpoint.
@@ -42,19 +42,19 @@ type PoolBlockData struct {
 // PoolMinerInfo contains miner data for the top miners from the /pool/topMiners endpoint.
 type PoolMinerInfo struct {
 	Address      string  `json:"address"`
-	Hashrate     int     `json:"hashrate"`
+	Hashrate     uint    `json:"hashrate"`
 	TotalWorkers int     `json:"total_workers"`
-	Balance      int     `json:"balance"`
+	Balance      uint    `json:"balance"`
 	PoolDonation float64 `json:"pool_donation"`
-	FirstJoined  int     `json:"first_joined"`
+	FirstJoined  uint    `json:"first_joined"`
 }
 
 // PoolDonatorInfo contains donation data for the top donators from the /pool/topDonators endpoint.
 type PoolDonatorInfo struct {
 	Address      string  `json:"address"`
 	PoolDonation float64 `json:"pool_donation"`
-	TotalDonated int     `json:"total_donated"`
-	FirstJoined  int     `json:"first_joined"`
+	TotalDonated uint    `json:"total_donated"`
+	FirstJoined  uint    `json:"first_joined"`
 }
 
 // PoolAvgLuckRoundTime contains luck data from the /pool/avgLuckRoundtime endpoint.
@@ -78,12 +78,12 @@ func PoolGetHashrate() (PoolHashrate, error) {
 
 	responseData := response.Result.(map[string]interface{})
 
-	data.As = int(responseData["as"].(float64))
-	data.Au = int(responseData["au"].(float64))
-	data.Eu = int(responseData["eu"].(float64))
-	data.Sa = int(responseData["sa"].(float64))
-	data.Total = int(responseData["total"].(float64))
-	data.Us = int(responseData["us"].(float64))
+	data.As = uint(responseData["as"].(float64))
+	data.Au = uint(responseData["au"].(float64))
+	data.Eu = uint(responseData["eu"].(float64))
+	data.Sa = uint(responseData["sa"].(float64))
+	data.Total = uint(responseData["total"].(float64))
+	data.Us = uint(responseData["us"].(float64))
 
 	return data, nil
 }
@@ -107,13 +107,13 @@ func PoolGetHashrateChart() ([]PoolHashrateChartData, error) {
 		statData := statDataPoint.(map[string]interface{})
 
 		data = append(data, PoolHashrateChartData{
-			As:        int(statData["as"].(float64)),
-			Au:        int(statData["au"].(float64)),
-			Eu:        int(statData["eu"].(float64)),
-			Sa:        int(statData["sa"].(float64)),
-			Timestamp: int(statData["timestamp"].(float64)),
-			Total:     int(statData["total"].(float64)),
-			Us:        int(statData["us"].(float64)),
+			As:        uint(statData["as"].(float64)),
+			Au:        uint(statData["au"].(float64)),
+			Eu:        uint(statData["eu"].(float64)),
+			Sa:        uint(statData["sa"].(float64)),
+			Timestamp: uint(statData["timestamp"].(float64)),
+			Total:     uint(statData["total"].(float64)),
+			Us:        uint(statData["us"].(float64)),
 		})
 	}
 
@@ -173,19 +173,19 @@ func PoolGetBlocks(page int) (PoolBlockData, error) {
 
 		data.Data = append(data.Data, Block{
 			Hash:                  blockData["hash"].(string),
-			Number:                int(blockData["number"].(float64)),
+			Number:                uint(blockData["number"].(float64)),
 			Type:                  blockData["type"].(string),
 			Miner:                 blockData["miner"].(string),
-			Difficulty:            int(blockData["difficulty"].(float64)),
-			Timestamp:             int(blockData["timestamp"].(float64)),
+			Difficulty:            uint(blockData["difficulty"].(float64)),
+			Timestamp:             uint(blockData["timestamp"].(float64)),
 			Confirmed:             blockData["confirmed"].(bool),
-			RoundTime:             int(blockData["round_time"].(float64)),
+			RoundTime:             uint(blockData["round_time"].(float64)),
 			Luck:                  blockData["number"].(float64),
 			ServerName:            blockData["server_name"].(string),
-			BlockReward:           int(blockData["block_reward"].(float64)),
-			BlockFees:             int(blockData["block_fees"].(float64)),
-			UncleInclusionRewards: int(blockData["uncle_inclusion_rewards"].(float64)),
-			TotalRewards:          int(blockData["total_rewards"].(float64)),
+			BlockReward:           uint(blockData["block_reward"].(float64)),
+			BlockFees:             uint(blockData["block_fees"].(float64)),
+			UncleInclusionRewards: uint(blockData["uncle_inclusion_rewards"].(float64)),
+			TotalRewards:          uint(blockData["total_rewards"].(float64)),
 		})
 	}
 
@@ -237,11 +237,11 @@ func PoolGetTopMiners() ([]PoolMinerInfo, error) {
 
 		data = append(data, PoolMinerInfo{
 			Address:      minerData["address"].(string),
-			Hashrate:     int(minerData["hashrate"].(float64)),
+			Hashrate:     uint(minerData["hashrate"].(float64)),
 			TotalWorkers: int(minerData["total_workers"].(float64)),
-			Balance:      int(minerData["balance"].(float64)),
+			Balance:      uint(minerData["balance"].(float64)),
 			PoolDonation: minerData["pool_donation"].(float64),
-			FirstJoined:  int(minerData["first_joined"].(float64)),
+			FirstJoined:  uint(minerData["first_joined"].(float64)),
 		})
 	}
 
@@ -269,8 +269,8 @@ func PoolGetTopDonators() ([]PoolDonatorInfo, error) {
 		data = append(data, PoolDonatorInfo{
 			Address:      donatorData["address"].(string),
 			PoolDonation: donatorData["pool_donation"].(float64),
-			TotalDonated: int(donatorData["total_donated"].(float64)),
-			FirstJoined:  int(donatorData["first_joined"].(float64)),
+			TotalDonated: uint(donatorData["total_donated"].(float64)),
+			FirstJoined:  uint(donatorData["first_joined"].(float64)),
 		})
 	}
 

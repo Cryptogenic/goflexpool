@@ -7,19 +7,19 @@ import (
 // Block contains information relevant to blocks mined - used by multiple endpoints.
 type Block struct {
 	Hash                  string  `json:"hash"`
-	Number                int     `json:"number"`
+	Number                uint    `json:"number"`
 	Type                  string  `json:"type"`
 	Miner                 string  `json:"miner"`
-	Difficulty            int     `json:"difficulty"`
-	Timestamp             int     `json:"timestamp"`
+	Difficulty            uint    `json:"difficulty"`
+	Timestamp             uint    `json:"timestamp"`
 	Confirmed             bool    `json:"confirmed"`
-	RoundTime             int     `json:"round_time"`
+	RoundTime             uint    `json:"round_time"`
 	Luck                  float64 `json:"luck"`
 	ServerName            string  `json:"server_name"`
-	BlockReward           int     `json:"block_reward"`
-	BlockFees             int     `json:"block_fees"`
-	UncleInclusionRewards int     `json:"uncle_inclusion_rewards"`
-	TotalRewards          int     `json:"total_rewards"`
+	BlockReward           uint    `json:"block_reward"`
+	BlockFees             uint    `json:"block_fees"`
+	UncleInclusionRewards uint    `json:"uncle_inclusion_rewards"`
+	TotalRewards          uint    `json:"total_rewards"`
 }
 
 // MinerDailyStats contains miner daily stats data from the /miner/{address}/stats and /miner/{address}/daily endpoint.
@@ -48,8 +48,8 @@ type MinerWorker struct {
 	Name                   string `json:"name"`
 	Online                 bool   `json:"online"`
 	DuplicateWorkersMerged int    `json:"duplicate_workers_merged"`
-	ReportedHashrate       int    `json:"reported_hashrate"`
-	EffectiveHashrate      int    `json:"effective_hashrate"`
+	ReportedHashrate       uint   `json:"reported_hashrate"`
+	EffectiveHashrate      uint   `json:"effective_hashrate"`
 	ValidShares            int    `json:"valid_shares"`
 	StaleShares            int    `json:"stale_shares"`
 	InvalidShares          int    `json:"invalid_shares"`
@@ -59,9 +59,9 @@ type MinerWorker struct {
 // MinerChartData contains chart data entries from the /miner/{address}/chart endpoint.
 type MinerChartData struct {
 	Timestamp                int     `json:"timestamp"`
-	EffectiveHashrate        int     `json:"effective_hashrate"`
+	EffectiveHashrate        uint    `json:"effective_hashrate"`
 	AverageEffectiveHashrate float64 `json:"average_effective_hashrate"`
-	ReportedHashrate         int     `json:"reported_hashrate"`
+	ReportedHashrate         uint    `json:"reported_hashrate"`
 	ValidShares              int     `json:"valid_shares"`
 	StaleShares              int     `json:"stale_shares"`
 	InvalidShares            int     `json:"invalid_shares"`
@@ -70,9 +70,9 @@ type MinerChartData struct {
 // MinerPayment contains payment entries from the /miner/{address}/payments endpoint.
 type MinerPayment struct {
 	Txid      string `json:"txid"`
-	Amount    int    `json:"amount"`
-	Timestamp int    `json:"timestamp"`
-	Duration  int    `json:"duration"`
+	Amount    uint   `json:"amount"`
+	Timestamp uint   `json:"timestamp"`
+	Duration  uint   `json:"duration"`
 }
 
 // MinerPaymentData contains paged payment data from the /miner/{address}/payments endpoint.
@@ -85,8 +85,8 @@ type MinerPaymentData struct {
 
 // MinerPaymentChart contains payment chart data from the /miner/{address}/paymentsChart endpoint.
 type MinerPaymentChart struct {
-	Amount    int `json:"amount"`
-	Timestamp int `json:"timestamp"`
+	Amount    uint `json:"amount"`
+	Timestamp uint `json:"timestamp"`
 }
 
 // MinerBlockData contains paged block data from the /miner/{address}/blocks endpoint.
@@ -105,17 +105,17 @@ type MinerBlockCount struct {
 
 // MinerDetails contains overview data from the /miner/{address}/details endpoint.
 type MinerDetails struct {
-	MinPayoutThreshold int     `json:"min_payout_threshold"`
+	MinPayoutThreshold uint    `json:"min_payout_threshold"`
 	PoolDonation       float64 `json:"pool_donation"`
-	MaxFeePrice        int     `json:"max_free_price"`
+	MaxFeePrice        uint    `json:"max_free_price"`
 	CensoredEmail      string  `json:"censored_email"`
 	CensoredIp         string  `json:"censored_ip"`
-	FirstJoined        int     `json:"first_joined"`
+	FirstJoined        uint    `json:"first_joined"`
 }
 
 // MinerGetBalance takes a mining wallet address and gets the balance in gwei. Returns the balance and nil on success,
 // or -1 and error on failure.
-func MinerGetBalance(address string) (int, error) {
+func MinerGetBalance(address string) (uint, error) {
 	var (
 		response Response
 		err      error
@@ -125,7 +125,7 @@ func MinerGetBalance(address string) (int, error) {
 		return -1, err
 	}
 
-	return int(response.Result.(float64)), nil
+	return uint(response.Result.(float64)), nil
 }
 
 // MinerGetCurrent takes a mining wallet address and gets the current effective and reported hashrate of that address.
@@ -141,8 +141,8 @@ func MinerGetCurrent(address string) (WorkerCurrentStats, error) {
 		return data, err
 	}
 
-	data.EffectiveHashrate = int(response.Result.(map[string]interface{})["effective_hashrate"].(float64))
-	data.ReportedHashrate = int(response.Result.(map[string]interface{})["reported_hashrate"].(float64))
+	data.EffectiveHashrate = uint(response.Result.(map[string]interface{})["effective_hashrate"].(float64))
+	data.ReportedHashrate = uint(response.Result.(map[string]interface{})["reported_hashrate"].(float64))
 
 	return data, nil
 }
@@ -186,8 +186,8 @@ func MinerGetStats(address string) (MinerStats, error) {
 	currentData := responseData["current"].(map[string]interface{})
 	dailyData := responseData["daily"].(map[string]interface{})
 
-	data.Current.EffectiveHashrate = int(currentData["effective_hashrate"].(float64))
-	data.Current.ReportedHashrate = int(currentData["reported_hashrate"].(float64))
+	data.Current.EffectiveHashrate = uint(currentData["effective_hashrate"].(float64))
+	data.Current.ReportedHashrate = uint(currentData["reported_hashrate"].(float64))
 
 	data.Daily.EffectiveHashrate = dailyData["effective_hashrate"].(float64)
 	data.Daily.InvalidShares = int(dailyData["invalid_shares"].(float64))
@@ -242,8 +242,8 @@ func MinerGetWorkers(address string) ([]MinerWorker, error) {
 				Name:                   workerData["name"].(string),
 				Online:                 workerData["online"].(bool),
 				DuplicateWorkersMerged: int(workerData["duplicate_workers_merged"].(float64)),
-				ReportedHashrate:       int(workerData["reported_hashrate"].(float64)),
-				EffectiveHashrate:      int(workerData["effective_hashrate"].(float64)),
+				ReportedHashrate:       uint(workerData["reported_hashrate"].(float64)),
+				EffectiveHashrate:      uint(workerData["effective_hashrate"].(float64)),
 				ValidShares:            int(workerData["valid_shares"].(float64)),
 				StaleShares:            int(workerData["stale_shares"].(float64)),
 				InvalidShares:          int(workerData["invalid_shares"].(float64)),
@@ -275,9 +275,9 @@ func MinerGetChart(address string) ([]MinerChartData, error) {
 
 		data = append(data, MinerChartData{
 			Timestamp:                int(chartData["timestamp"].(float64)),
-			EffectiveHashrate:        int(chartData["effective_hashrate"].(float64)),
+			EffectiveHashrate:        uint(chartData["effective_hashrate"].(float64)),
 			AverageEffectiveHashrate: chartData["average_effective_hashrate"].(float64),
-			ReportedHashrate:         int(chartData["reported_hashrate"].(float64)),
+			ReportedHashrate:         uint(chartData["reported_hashrate"].(float64)),
 			ValidShares:              int(chartData["valid_shares"].(float64)),
 			StaleShares:              int(chartData["stale_shares"].(float64)),
 			InvalidShares:            int(chartData["invalid_shares"].(float64)),
@@ -310,9 +310,9 @@ func MinerGetPayments(address string, page int) (MinerPaymentData, error) {
 
 			data.Data = append(data.Data, MinerPayment{
 				Txid:      paymentData["txid"].(string),
-				Amount:    int(paymentData["amount"].(float64)),
-				Timestamp: int(paymentData["timestamp"].(float64)),
-				Duration:  int(paymentData["duration"].(float64)),
+				Amount:    uint(paymentData["amount"].(float64)),
+				Timestamp: uint(paymentData["timestamp"].(float64)),
+				Duration:  uint(paymentData["duration"].(float64)),
 			})
 		}
 	}
@@ -358,8 +358,8 @@ func MinerGetPaymentChart(address string) ([]MinerPaymentChart, error) {
 		paymentData := payment.(map[string]interface{})
 
 		data = append(data, MinerPaymentChart{
-			Amount:    int(paymentData["amount"].(float64)),
-			Timestamp: int(paymentData["timestamp"].(float64)),
+			Amount:    uint(paymentData["amount"].(float64)),
+			Timestamp: uint(paymentData["timestamp"].(float64)),
 		})
 	}
 
@@ -389,19 +389,19 @@ func MinerGetBlocks(address string, page int) (MinerBlockData, error) {
 
 			data.Data = append(data.Data, Block{
 				Hash:                  blockData["hash"].(string),
-				Number:                int(blockData["number"].(float64)),
+				Number:                uint(blockData["number"].(float64)),
 				Type:                  blockData["type"].(string),
 				Miner:                 blockData["miner"].(string),
-				Difficulty:            int(blockData["difficulty"].(float64)),
-				Timestamp:             int(blockData["timestamp"].(float64)),
+				Difficulty:            uint(blockData["difficulty"].(float64)),
+				Timestamp:             uint(blockData["timestamp"].(float64)),
 				Confirmed:             blockData["confirmed"].(bool),
-				RoundTime:             int(blockData["round_time"].(float64)),
+				RoundTime:             uint(blockData["round_time"].(float64)),
 				Luck:                  blockData["difficulty"].(float64),
 				ServerName:            blockData["server_name"].(string),
-				BlockReward:           int(blockData["block_reward"].(float64)),
-				BlockFees:             int(blockData["block_fees"].(float64)),
-				UncleInclusionRewards: int(blockData["uncle_inclusion_rewards"].(float64)),
-				TotalRewards:          int(blockData["total_rewards"].(float64)),
+				BlockReward:           uint(blockData["block_reward"].(float64)),
+				BlockFees:             uint(blockData["block_fees"].(float64)),
+				UncleInclusionRewards: uint(blockData["uncle_inclusion_rewards"].(float64)),
+				TotalRewards:          uint(blockData["total_rewards"].(float64)),
 			})
 		}
 	}
@@ -443,12 +443,12 @@ func MinerGetDetails(address string) (MinerDetails, error) {
 
 	responseData := response.Result.(map[string]interface{})
 
-	data.MinPayoutThreshold = int(responseData["min_payout_threshold"].(float64))
+	data.MinPayoutThreshold = uint(responseData["min_payout_threshold"].(float64))
 	data.PoolDonation = responseData["pool_donation"].(float64)
-	data.MaxFeePrice = int(responseData["max_fee_price"].(float64))
+	data.MaxFeePrice = uint(responseData["max_fee_price"].(float64))
 	data.CensoredEmail = responseData["censored_email"].(string)
 	data.CensoredIp = responseData["censored_ip"].(string)
-	data.FirstJoined = int(responseData["first_joined"].(float64))
+	data.FirstJoined = uint(responseData["first_joined"].(float64))
 
 	return data, nil
 }
