@@ -126,7 +126,7 @@ func MinerGetBalance(address string) (uint, error) {
 	}
 
 	wei := response.Result.(float64)
-	gwei := wei * Utils.WeiRatio
+	gwei := wei * WeiRatio
 	return uint(gwei), nil
 }
 
@@ -312,7 +312,7 @@ func MinerGetPayments(address string, page int) (MinerPaymentData, error) {
 
 			data.Data = append(data.Data, MinerPayment{
 				Txid:      paymentData["txid"].(string),
-				Amount:    uint(paymentData["amount"].(float64) * utils.WeiRatio),
+				Amount:    uint(paymentData["amount"].(float64) * WeiRatio),
 				Timestamp: uint(paymentData["timestamp"].(float64)),
 				Duration:  uint(paymentData["duration"].(float64)),
 			})
@@ -360,7 +360,7 @@ func MinerGetPaymentChart(address string) ([]MinerPaymentChart, error) {
 		paymentData := payment.(map[string]interface{})
 
 		data = append(data, MinerPaymentChart{
-			Amount:    uint(paymentData["amount"].(float64) * utils.WeiRatio),
+			Amount:    uint(paymentData["amount"].(float64) * WeiRatio),
 			Timestamp: uint(paymentData["timestamp"].(float64)),
 		})
 	}
@@ -400,10 +400,10 @@ func MinerGetBlocks(address string, page int) (MinerBlockData, error) {
 				RoundTime:             uint(blockData["round_time"].(float64)),
 				Luck:                  blockData["difficulty"].(float64),
 				ServerName:            blockData["server_name"].(string),
-				BlockReward:           uint(blockData["block_reward"].(float64) * utils.WeiRatio),
-				BlockFees:             uint(blockData["block_fees"].(float64) * utils.WeiRatio),
-				UncleInclusionRewards: uint(blockData["uncle_inclusion_rewards"].(float64) * utils.WeiRatio),
-				TotalRewards:          uint(blockData["total_rewards"].(float64) * utils.WeiRatio),
+				BlockReward:           uint(blockData["block_reward"].(float64) * WeiRatio),
+				BlockFees:             uint(blockData["block_fees"].(float64) * WeiRatio),
+				UncleInclusionRewards: uint(blockData["uncle_inclusion_rewards"].(float64) * WeiRatio),
+				TotalRewards:          uint(blockData["total_rewards"].(float64) * WeiRatio),
 			})
 		}
 	}
@@ -445,7 +445,7 @@ func MinerGetDetails(address string) (MinerDetails, error) {
 
 	responseData := response.Result.(map[string]interface{})
 
-	data.MinPayoutThreshold = uint(responseData["min_payout_threshold"].(float64) * utils.WeiRatio)
+	data.MinPayoutThreshold = uint(responseData["min_payout_threshold"].(float64) * WeiRatio)
 	data.PoolDonation = responseData["pool_donation"].(float64)
 	data.MaxFeePrice = uint(responseData["max_fee_price"].(float64))
 	data.CensoredEmail = responseData["censored_email"].(string)
@@ -468,7 +468,7 @@ func MinerGetEstimatedDailyRevenue(address string) (uint, error) {
 	}
 
 	wei := response.Result.(float64)
-	gwei := wei * Utils.WeiRatio
+	gwei := wei * WeiRatio
 	return uint(gwei), nil
 }
 
@@ -500,7 +500,7 @@ func MinerGetTotalPaid(address string) (uint, error) {
 	}
 
 	wei := response.Result.(float64)
-	gwei := wei * Utils.WeiRatio
+	gwei := wei * WeiRatio
 	return uint(gwei), nil
 }
 
@@ -517,6 +517,6 @@ func MinerGetTotalDonated(address string) (uint, error) {
 	}
 
 	wei := response.Result.(float64)
-	gwei := wei * Utils.WeiRatio
+	gwei := wei * WeiRatio
 	return uint(gwei), nil
 }

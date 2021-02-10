@@ -18,6 +18,8 @@ const (
 	Pool
 )
 
+const WeiRatio = 0.000000001
+
 // Endpoint type alias for the sendAPIRequest function.
 type Endpoint int
 
