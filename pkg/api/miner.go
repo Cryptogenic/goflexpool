@@ -107,7 +107,7 @@ type MinerBlockCount struct {
 type MinerDetails struct {
 	MinPayoutThreshold uint    `json:"min_payout_threshold"`
 	PoolDonation       float64 `json:"pool_donation"`
-	MaxFeePrice        uint    `json:"max_free_price"`
+	MaxFeePrice        uint    `json:"max_fee_price"`
 	CensoredEmail      string  `json:"censored_email"`
 	CensoredIp         string  `json:"censored_ip"`
 	FirstJoined        uint    `json:"first_joined"`
