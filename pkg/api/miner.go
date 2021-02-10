@@ -114,7 +114,7 @@ type MinerDetails struct {
 }
 
 // MinerGetBalance takes a mining wallet address and gets the balance in gwei. Returns the balance and nil on success,
-// or -1 and error on failure.
+// or 0 and error on failure.
 func MinerGetBalance(address string) (uint, error) {
 	var (
 		response Response
@@ -122,7 +122,7 @@ func MinerGetBalance(address string) (uint, error) {
 	)
 
 	if response, err = sendAPIRequest(Miner, address, "balance", []string{}); err != nil {
-		return -1, err
+		return 0, err
 	}
 
 	return uint(response.Result.(float64)), nil
@@ -325,7 +325,7 @@ func MinerGetPayments(address string, page int) (MinerPaymentData, error) {
 }
 
 // MinerGetPaymentCount takes a mining wallet address and gets the number of payments made to that address. Returns the
-// number of payments as an int and nil on success, or -1 and error on failure.
+// number of payments as an int and nil on success, or 0 and error on failure.
 func MinerGetPaymentCount(address string) (int, error) {
 	var (
 		response Response
@@ -333,7 +333,7 @@ func MinerGetPaymentCount(address string) (int, error) {
 	)
 
 	if response, err = sendAPIRequest(Miner, address, "paymentCount", []string{}); err != nil {
-		return -1, err
+		return 0, err
 	}
 
 	return int(response.Result.(float64)), nil
@@ -414,7 +414,7 @@ func MinerGetBlocks(address string, page int) (MinerBlockData, error) {
 }
 
 // MinerGetBlockCount takes a mining wallet address and gets the number of blocks mined by that address. Returns the number
-// of blocks mined as an int and nil on success, or -1 and error on failure.
+// of blocks mined as an int and nil on success, or 0 and error on failure.
 func MinerGetBlockCount(address string) (int, error) {
 	var (
 		response Response
@@ -422,7 +422,7 @@ func MinerGetBlockCount(address string) (int, error) {
 	)
 
 	if response, err = sendAPIRequest(Miner, address, "blockCount", []string{}); err != nil {
-		return -1, err
+		return 0, err
 	}
 
 	return int(response.Result.(float64)), nil
@@ -454,7 +454,7 @@ func MinerGetDetails(address string) (MinerDetails, error) {
 }
 
 // MinerGetEstimatedDailyRevenue takes a mining address and gets the estimated daily revenue in gwei. Returns the estimated
-// daily revenue as an int and nil on success, or -1 and error on failure.
+// daily revenue as an int and nil on success, or 0 and error on failure.
 func MinerGetEstimatedDailyRevenue(address string) (int, error) {
 	var (
 		response Response
@@ -462,14 +462,14 @@ func MinerGetEstimatedDailyRevenue(address string) (int, error) {
 	)
 
 	if response, err = sendAPIRequest(Miner, address, "estimatedDailyRevenue", []string{}); err != nil {
-		return -1, err
+		return 0, err
 	}
 
 	return int(response.Result.(float64)), nil
 }
 
 // MinerGetRoundShare takes a mining address and gets the current round share in percentage. Returns the round share as
-// a float64 and nil on success, or -1 and error on failure.
+// a float64 and nil on success, or 0.0 and error on failure.
 func MinerGetRoundShare(address string) (float64, error) {
 	var (
 		response Response
@@ -484,7 +484,7 @@ func MinerGetRoundShare(address string) (float64, error) {
 }
 
 // MinerGetTotalPaid takes a mining address and gets the total amount of gwei paid to that address. Returns the amount paid
-// as an int and nil on success, or -1 and error on failure.
+// as an int and nil on success, or 0 and error on failure.
 func MinerGetTotalPaid(address string) (int, error) {
 	var (
 		response Response
@@ -492,14 +492,14 @@ func MinerGetTotalPaid(address string) (int, error) {
 	)
 
 	if response, err = sendAPIRequest(Miner, address, "totalPaid", []string{}); err != nil {
-		return -1, err
+		return 0, err
 	}
 
 	return int(response.Result.(float64)), nil
 }
 
 // MinerGetTotalDonated takes a mining address and gets the total amount of gwei donated from that address to the pool.
-// Returns the amount donated as an int and nil on success, or -1 and error on failure.
+// Returns the amount donated as an int and nil on success, or -0 and error on failure.
 func MinerGetTotalDonated(address string) (int, error) {
 	var (
 		response Response
@@ -507,7 +507,7 @@ func MinerGetTotalDonated(address string) (int, error) {
 	)
 
 	if response, err = sendAPIRequest(Miner, address, "totalDonated", []string{}); err != nil {
-		return -1, err
+		return -0, err
 	}
 
 	return int(response.Result.(float64)), nil

@@ -121,7 +121,7 @@ func PoolGetHashrateChart() ([]PoolHashrateChartData, error) {
 }
 
 // PoolGetMinersOnline gets how many miners are currently active on the pool. Returns the active miner count and nil on
-// success, or -1 and error on failure.
+// success, or 0 and error on failure.
 func PoolGetMinersOnline() (int, error) {
 	var (
 		response Response
@@ -129,14 +129,14 @@ func PoolGetMinersOnline() (int, error) {
 	)
 
 	if response, err = sendAPIRequest(Pool, "", "minersOnline", []string{}); err != nil {
-		return -1, err
+		return 0, err
 	}
 
 	return int(response.Result.(float64)), nil
 }
 
 // PoolGetWorkersOnline gets how many workers are currently active on the pool. Returns the active worker count and nil on
-// success, or -1 and error on failure.
+// success, or 0 and error on failure.
 func PoolGetWorkersOnline() (int, error) {
 	var (
 		response Response
@@ -144,7 +144,7 @@ func PoolGetWorkersOnline() (int, error) {
 	)
 
 	if response, err = sendAPIRequest(Pool, "", "workersOnline", []string{}); err != nil {
-		return -1, err
+		return 0, err
 	}
 
 	return int(response.Result.(float64)), nil
@@ -314,16 +314,16 @@ func PoolGetCurrentLuck() (float64, error) {
 }
 
 // PoolGetAverageBlockReward gets the pool's average block reward in gwei. Returns the average block reward as an int
-// and nil on success, or -1 and error on failure.
-func PoolGetAverageBlockReward() (int, error) {
+// and nil on success, or 0 and error on failure.
+func PoolGetAverageBlockReward() (uint, error) {
 	var (
 		response Response
 		err      error
 	)
 
 	if response, err = sendAPIRequest(Pool, "", "averageBlockReward", []string{}); err != nil {
-		return -1, err
+		return 0, err
 	}
 
-	return int(response.Result.(float64)), nil
+	return uint(response.Result.(float64)), nil
 }
