@@ -1,0 +1,1724 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>api - The Go Programming Language</title>
+
+<link type="text/css" rel="stylesheet" href="./lib/godoc/style.css">
+
+
+<script>window.initFuncs = [];</script>
+<script src="./lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.12.12";</script>
+<script src="./lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package api
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/cryptogenic/goflexpool/pkg/api"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="#pkg-constants">Constants</a></dd>
+			
+			
+			
+				
+				<dd><a href="#MinerGetBalance">func MinerGetBalance(address string) (uint, error)</a></dd>
+			
+				
+				<dd><a href="#MinerGetBlockCount">func MinerGetBlockCount(address string) (int, error)</a></dd>
+			
+				
+				<dd><a href="#MinerGetEstimatedDailyRevenue">func MinerGetEstimatedDailyRevenue(address string) (uint, error)</a></dd>
+			
+				
+				<dd><a href="#MinerGetPaymentCount">func MinerGetPaymentCount(address string) (int, error)</a></dd>
+			
+				
+				<dd><a href="#MinerGetRoundShare">func MinerGetRoundShare(address string) (float64, error)</a></dd>
+			
+				
+				<dd><a href="#MinerGetTotalDonated">func MinerGetTotalDonated(address string) (uint, error)</a></dd>
+			
+				
+				<dd><a href="#MinerGetTotalPaid">func MinerGetTotalPaid(address string) (uint, error)</a></dd>
+			
+				
+				<dd><a href="#PoolGetAverageBlockReward">func PoolGetAverageBlockReward() (uint, error)</a></dd>
+			
+				
+				<dd><a href="#PoolGetCurrentLuck">func PoolGetCurrentLuck() (float64, error)</a></dd>
+			
+				
+				<dd><a href="#PoolGetMinersOnline">func PoolGetMinersOnline() (int, error)</a></dd>
+			
+				
+				<dd><a href="#PoolGetWorkersOnline">func PoolGetWorkersOnline() (int, error)</a></dd>
+			
+			
+				
+				<dd><a href="#Block">type Block</a></dd>
+				
+				
+			
+				
+				<dd><a href="#Endpoint">type Endpoint</a></dd>
+				
+				
+			
+				
+				<dd><a href="#MinerBlockCount">type MinerBlockCount</a></dd>
+				
+				
+			
+				
+				<dd><a href="#MinerBlockData">type MinerBlockData</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#MinerGetBlocks">func MinerGetBlocks(address string, page int) (MinerBlockData, error)</a></dd>
+				
+				
+			
+				
+				<dd><a href="#MinerChartData">type MinerChartData</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#MinerGetChart">func MinerGetChart(address string) ([]MinerChartData, error)</a></dd>
+				
+				
+			
+				
+				<dd><a href="#MinerDailyStats">type MinerDailyStats</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#MinerGetDaily">func MinerGetDaily(address string) (MinerDailyStats, error)</a></dd>
+				
+				
+			
+				
+				<dd><a href="#MinerDetails">type MinerDetails</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#MinerGetDetails">func MinerGetDetails(address string) (MinerDetails, error)</a></dd>
+				
+				
+			
+				
+				<dd><a href="#MinerPayment">type MinerPayment</a></dd>
+				
+				
+			
+				
+				<dd><a href="#MinerPaymentChart">type MinerPaymentChart</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#MinerGetPaymentChart">func MinerGetPaymentChart(address string) ([]MinerPaymentChart, error)</a></dd>
+				
+				
+			
+				
+				<dd><a href="#MinerPaymentData">type MinerPaymentData</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#MinerGetPayments">func MinerGetPayments(address string, page int) (MinerPaymentData, error)</a></dd>
+				
+				
+			
+				
+				<dd><a href="#MinerStats">type MinerStats</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#MinerGetStats">func MinerGetStats(address string) (MinerStats, error)</a></dd>
+				
+				
+			
+				
+				<dd><a href="#MinerWorker">type MinerWorker</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#MinerGetWorkers">func MinerGetWorkers(address string) ([]MinerWorker, error)</a></dd>
+				
+				
+			
+				
+				<dd><a href="#MinerWorkerCount">type MinerWorkerCount</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#MinerGetWorkerCount">func MinerGetWorkerCount(address string) (MinerWorkerCount, error)</a></dd>
+				
+				
+			
+				
+				<dd><a href="#PoolAvgLuckRoundTime">type PoolAvgLuckRoundTime</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#PoolGetAverageLuckRoundTime">func PoolGetAverageLuckRoundTime() (PoolAvgLuckRoundTime, error)</a></dd>
+				
+				
+			
+				
+				<dd><a href="#PoolBlockCount">type PoolBlockCount</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#PoolGetBlockCount">func PoolGetBlockCount() (PoolBlockCount, error)</a></dd>
+				
+				
+			
+				
+				<dd><a href="#PoolBlockData">type PoolBlockData</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#PoolGetBlocks">func PoolGetBlocks(page int) (PoolBlockData, error)</a></dd>
+				
+				
+			
+				
+				<dd><a href="#PoolDonatorInfo">type PoolDonatorInfo</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#PoolGetTopDonators">func PoolGetTopDonators() ([]PoolDonatorInfo, error)</a></dd>
+				
+				
+			
+				
+				<dd><a href="#PoolHashrate">type PoolHashrate</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#PoolGetHashrate">func PoolGetHashrate() (PoolHashrate, error)</a></dd>
+				
+				
+			
+				
+				<dd><a href="#PoolHashrateChartData">type PoolHashrateChartData</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#PoolGetHashrateChart">func PoolGetHashrateChart() ([]PoolHashrateChartData, error)</a></dd>
+				
+				
+			
+				
+				<dd><a href="#PoolMinerInfo">type PoolMinerInfo</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#PoolGetTopMiners">func PoolGetTopMiners() ([]PoolMinerInfo, error)</a></dd>
+				
+				
+			
+				
+				<dd><a href="#Response">type Response</a></dd>
+				
+				
+			
+				
+				<dd><a href="#ResponseError">type ResponseError</a></dd>
+				
+				
+			
+				
+				<dd><a href="#WorkerChartData">type WorkerChartData</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#WorkerGetChart">func WorkerGetChart(address string, worker string) ([]WorkerChartData, error)</a></dd>
+				
+				
+			
+				
+				<dd><a href="#WorkerCurrentStats">type WorkerCurrentStats</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#MinerGetCurrent">func MinerGetCurrent(address string) (WorkerCurrentStats, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#WorkerGetCurrent">func WorkerGetCurrent(address string, worker string) (WorkerCurrentStats, error)</a></dd>
+				
+				
+			
+				
+				<dd><a href="#WorkerDailyStats">type WorkerDailyStats</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#WorkerGetDaily">func WorkerGetDaily(address string, worker string) (WorkerDailyStats, error)</a></dd>
+				
+				
+			
+				
+				<dd><a href="#WorkerStats">type WorkerStats</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#WorkerGetStats">func WorkerGetStats(address string, worker string) (WorkerStats, error)</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="/src/github.com/cryptogenic/goflexpool/pkg/api/miner.go">miner.go</a>
+			
+				<a href="/src/github.com/cryptogenic/goflexpool/pkg/api/networking.go">networking.go</a>
+			
+				<a href="/src/github.com/cryptogenic/goflexpool/pkg/api/pool.go">pool.go</a>
+			
+				<a href="/src/github.com/cryptogenic/goflexpool/pkg/api/worker.go">worker.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				<p>
+APIHost defines the API host URL for v1.
+</p>
+
+				<pre>const <span id="APIHost">APIHost</span> = &#34;https://flexpool.io/api/v1&#34;</pre>
+			
+				
+				<pre>const <span id="WeiRatio">WeiRatio</span> = 0.000000001</pre>
+			
+		
+		
+		
+			
+			
+			<h2 id="MinerGetBalance">func <a href="/src/github.com/cryptogenic/goflexpool/pkg/api/miner.go?s=4626:4676#L108">MinerGetBalance</a>
+				<a class="permalink" href="#MinerGetBalance">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func MinerGetBalance(address <a href="/pkg/builtin/#string">string</a>) (<a href="/pkg/builtin/#uint">uint</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
+			<p>
+MinerGetBalance takes a mining wallet address and gets the balance in gwei. Returns the balance and nil on success,
+or 0 and error on failure.
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="MinerGetBlockCount">func <a href="/src/github.com/cryptogenic/goflexpool/pkg/api/miner.go?s=15612:15664#L410">MinerGetBlockCount</a>
+				<a class="permalink" href="#MinerGetBlockCount">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func MinerGetBlockCount(address <a href="/pkg/builtin/#string">string</a>) (<a href="/pkg/builtin/#int">int</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
+			<p>
+MinerGetBlockCount takes a mining wallet address and gets the number of blocks mined by that address. Returns the number
+of blocks mined as an int and nil on success, or 0 and error on failure.
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="MinerGetEstimatedDailyRevenue">func <a href="/src/github.com/cryptogenic/goflexpool/pkg/api/miner.go?s=17007:17071#L450">MinerGetEstimatedDailyRevenue</a>
+				<a class="permalink" href="#MinerGetEstimatedDailyRevenue">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func MinerGetEstimatedDailyRevenue(address <a href="/pkg/builtin/#string">string</a>) (<a href="/pkg/builtin/#uint">uint</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
+			<p>
+MinerGetEstimatedDailyRevenue takes a mining address and gets the estimated daily revenue in gwei. Returns the estimated
+daily revenue as an int and nil on success, or 0 and error on failure.
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="MinerGetPaymentCount">func <a href="/src/github.com/cryptogenic/goflexpool/pkg/api/miner.go?s=12404:12458#L321">MinerGetPaymentCount</a>
+				<a class="permalink" href="#MinerGetPaymentCount">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func MinerGetPaymentCount(address <a href="/pkg/builtin/#string">string</a>) (<a href="/pkg/builtin/#int">int</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
+			<p>
+MinerGetPaymentCount takes a mining wallet address and gets the number of payments made to that address. Returns the
+number of payments as an int and nil on success, or 0 and error on failure.
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="MinerGetRoundShare">func <a href="/src/github.com/cryptogenic/goflexpool/pkg/api/miner.go?s=17511:17567#L467">MinerGetRoundShare</a>
+				<a class="permalink" href="#MinerGetRoundShare">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func MinerGetRoundShare(address <a href="/pkg/builtin/#string">string</a>) (<a href="/pkg/builtin/#float64">float64</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
+			<p>
+MinerGetRoundShare takes a mining address and gets the current round share in percentage. Returns the round share as
+a float64 and nil on success, or 0.0 and error on failure.
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="MinerGetTotalDonated">func <a href="/src/github.com/cryptogenic/goflexpool/pkg/api/miner.go?s=18463:18518#L499">MinerGetTotalDonated</a>
+				<a class="permalink" href="#MinerGetTotalDonated">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func MinerGetTotalDonated(address <a href="/pkg/builtin/#string">string</a>) (<a href="/pkg/builtin/#uint">uint</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
+			<p>
+MinerGetTotalDonated takes a mining address and gets the total amount of gwei donated from that address to the pool.
+Returns the amount donated as an int and nil on success, or -0 and error on failure.
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="MinerGetTotalPaid">func <a href="/src/github.com/cryptogenic/goflexpool/pkg/api/miner.go?s=17957:18009#L482">MinerGetTotalPaid</a>
+				<a class="permalink" href="#MinerGetTotalPaid">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func MinerGetTotalPaid(address <a href="/pkg/builtin/#string">string</a>) (<a href="/pkg/builtin/#uint">uint</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
+			<p>
+MinerGetTotalPaid takes a mining address and gets the total amount of gwei paid to that address. Returns the amount paid
+as an int and nil on success, or 0 and error on failure.
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="PoolGetAverageBlockReward">func <a href="/src/github.com/cryptogenic/goflexpool/pkg/api/pool.go?s=10141:10187#L308">PoolGetAverageBlockReward</a>
+				<a class="permalink" href="#PoolGetAverageBlockReward">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func PoolGetAverageBlockReward() (<a href="/pkg/builtin/#uint">uint</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
+			<p>
+PoolGetAverageBlockReward gets the pool&#39;s average block reward in gwei. Returns the average block reward as an int
+and nil on success, or 0 and error on failure.
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="PoolGetCurrentLuck">func <a href="/src/github.com/cryptogenic/goflexpool/pkg/api/pool.go?s=9730:9772#L293">PoolGetCurrentLuck</a>
+				<a class="permalink" href="#PoolGetCurrentLuck">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func PoolGetCurrentLuck() (<a href="/pkg/builtin/#float64">float64</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
+			<p>
+PoolGetCurrentLuck gets the pool&#39;s current luck as a percent. Returns the current luck as a float64 and nil on success,
+or 0.0 and error on failure.
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="PoolGetMinersOnline">func <a href="/src/github.com/cryptogenic/goflexpool/pkg/api/pool.go?s=3904:3943#L115">PoolGetMinersOnline</a>
+				<a class="permalink" href="#PoolGetMinersOnline">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func PoolGetMinersOnline() (<a href="/pkg/builtin/#int">int</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
+			<p>
+PoolGetMinersOnline gets how many miners are currently active on the pool. Returns the active miner count and nil on
+success, or 0 and error on failure.
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="PoolGetWorkersOnline">func <a href="/src/github.com/cryptogenic/goflexpool/pkg/api/pool.go?s=4310:4350#L130">PoolGetWorkersOnline</a>
+				<a class="permalink" href="#PoolGetWorkersOnline">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func PoolGetWorkersOnline() (<a href="/pkg/builtin/#int">int</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
+			<p>
+PoolGetWorkersOnline gets how many workers are currently active on the pool. Returns the active worker count and nil on
+success, or 0 and error on failure.
+</p>
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="Block">type <a href="/src/github.com/cryptogenic/goflexpool/pkg/api/miner.go?s=121:846#L1">Block</a>
+				<a class="permalink" href="#Block">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+Block contains information relevant to blocks mined - used by multiple endpoints.
+</p>
+
+			<pre>type Block struct {
+<span id="Block.Hash"></span>    Hash                  <a href="/pkg/builtin/#string">string</a>  `json:&#34;hash&#34;`
+<span id="Block.Number"></span>    Number                <a href="/pkg/builtin/#uint">uint</a>    `json:&#34;number&#34;`
+<span id="Block.Type"></span>    Type                  <a href="/pkg/builtin/#string">string</a>  `json:&#34;type&#34;`
+<span id="Block.Miner"></span>    Miner                 <a href="/pkg/builtin/#string">string</a>  `json:&#34;miner&#34;`
+<span id="Block.Difficulty"></span>    Difficulty            <a href="/pkg/builtin/#uint">uint</a>    `json:&#34;difficulty&#34;`
+<span id="Block.Timestamp"></span>    Timestamp             <a href="/pkg/builtin/#uint">uint</a>    `json:&#34;timestamp&#34;`
+<span id="Block.Confirmed"></span>    Confirmed             <a href="/pkg/builtin/#bool">bool</a>    `json:&#34;confirmed&#34;`
+<span id="Block.RoundTime"></span>    RoundTime             <a href="/pkg/builtin/#uint">uint</a>    `json:&#34;round_time&#34;`
+<span id="Block.Luck"></span>    Luck                  <a href="/pkg/builtin/#float64">float64</a> `json:&#34;luck&#34;`
+<span id="Block.ServerName"></span>    ServerName            <a href="/pkg/builtin/#string">string</a>  `json:&#34;server_name&#34;`
+<span id="Block.BlockReward"></span>    BlockReward           <a href="/pkg/builtin/#uint">uint</a>    `json:&#34;block_reward&#34;`
+<span id="Block.BlockFees"></span>    BlockFees             <a href="/pkg/builtin/#uint">uint</a>    `json:&#34;block_fees&#34;`
+<span id="Block.UncleInclusionRewards"></span>    UncleInclusionRewards <a href="/pkg/builtin/#uint">uint</a>    `json:&#34;uncle_inclusion_rewards&#34;`
+<span id="Block.TotalRewards"></span>    TotalRewards          <a href="/pkg/builtin/#uint">uint</a>    `json:&#34;total_rewards&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Endpoint">type <a href="/src/github.com/cryptogenic/goflexpool/pkg/api/networking.go?s=335:352#L14">Endpoint</a>
+				<a class="permalink" href="#Endpoint">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+Endpoint type alias for the sendAPIRequest function.
+</p>
+
+			<pre>type Endpoint <a href="/pkg/builtin/#int">int</a></pre>
+
+			
+				<p>
+Endpoint identifiers.
+</p>
+
+				<pre>const (
+    <span id="Miner">Miner</span> <a href="#Endpoint">Endpoint</a> = <a href="/pkg/builtin/#iota">iota</a>
+    <span id="Worker">Worker</span>
+    <span id="Pool">Pool</span>
+)</pre>
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="MinerBlockCount">type <a href="/src/github.com/cryptogenic/goflexpool/pkg/api/miner.go?s=3946:4051#L91">MinerBlockCount</a>
+				<a class="permalink" href="#MinerBlockCount">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+MinerBlockCount contains block count data from the /miner/{address}/blockCount endpoint.
+</p>
+
+			<pre>type MinerBlockCount struct {
+<span id="MinerBlockCount.Confirmed"></span>    Confirmed   <a href="/pkg/builtin/#int">int</a> `json:&#34;confirmed&#34;`
+<span id="MinerBlockCount.Unconfirmed"></span>    Unconfirmed <a href="/pkg/builtin/#int">int</a> `json:&#34;unconfirmed&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="MinerBlockData">type <a href="/src/github.com/cryptogenic/goflexpool/pkg/api/miner.go?s=3654:3852#L83">MinerBlockData</a>
+				<a class="permalink" href="#MinerBlockData">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+MinerBlockData contains paged block data from the /miner/{address}/blocks endpoint.
+</p>
+
+			<pre>type MinerBlockData struct {
+<span id="MinerBlockData.Data"></span>    Data         []<a href="#Block">Block</a> `json:&#34;data&#34;`
+<span id="MinerBlockData.ItemsPerPage"></span>    ItemsPerPage <a href="/pkg/builtin/#int">int</a>     `json:&#34;items_per_page&#34;`
+<span id="MinerBlockData.TotalItems"></span>    TotalItems   <a href="/pkg/builtin/#int">int</a>     `json:&#34;total_items&#34;`
+<span id="MinerBlockData.TotalPages"></span>    TotalPages   <a href="/pkg/builtin/#int">int</a>     `json:&#34;total_pages&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="MinerGetBlocks">func <a href="/src/github.com/cryptogenic/goflexpool/pkg/api/miner.go?s=13687:13756#L363">MinerGetBlocks</a>
+					<a class="permalink" href="#MinerGetBlocks">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func MinerGetBlocks(address <a href="/pkg/builtin/#string">string</a>, page <a href="/pkg/builtin/#int">int</a>) (<a href="#MinerBlockData">MinerBlockData</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
+				<p>
+MinerGetBlocks takes an address and page number, and gets a list of blocks mined from that address. Returns a
+MinerBlockData instance and nil on success, an empty MinerBlockData and error on failure.
+</p>
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="MinerChartData">type <a href="/src/github.com/cryptogenic/goflexpool/pkg/api/miner.go?s=2340:2786#L50">MinerChartData</a>
+				<a class="permalink" href="#MinerChartData">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+MinerChartData contains chart data entries from the /miner/{address}/chart endpoint.
+</p>
+
+			<pre>type MinerChartData struct {
+<span id="MinerChartData.Timestamp"></span>    Timestamp                <a href="/pkg/builtin/#int">int</a>     `json:&#34;timestamp&#34;`
+<span id="MinerChartData.EffectiveHashrate"></span>    EffectiveHashrate        <a href="/pkg/builtin/#uint">uint</a>    `json:&#34;effective_hashrate&#34;`
+<span id="MinerChartData.AverageEffectiveHashrate"></span>    AverageEffectiveHashrate <a href="/pkg/builtin/#float64">float64</a> `json:&#34;average_effective_hashrate&#34;`
+<span id="MinerChartData.ReportedHashrate"></span>    ReportedHashrate         <a href="/pkg/builtin/#uint">uint</a>    `json:&#34;reported_hashrate&#34;`
+<span id="MinerChartData.ValidShares"></span>    ValidShares              <a href="/pkg/builtin/#int">int</a>     `json:&#34;valid_shares&#34;`
+<span id="MinerChartData.StaleShares"></span>    StaleShares              <a href="/pkg/builtin/#int">int</a>     `json:&#34;stale_shares&#34;`
+<span id="MinerChartData.InvalidShares"></span>    InvalidShares            <a href="/pkg/builtin/#int">int</a>     `json:&#34;invalid_shares&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="MinerGetChart">func <a href="/src/github.com/cryptogenic/goflexpool/pkg/api/miner.go?s=9971:10031#L252">MinerGetChart</a>
+					<a class="permalink" href="#MinerGetChart">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func MinerGetChart(address <a href="/pkg/builtin/#string">string</a>) ([]<a href="#MinerChartData">MinerChartData</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
+				<p>
+MinerGetChart takes a mining wallet address and gets a list of the chart data for that address. Returns a slice of
+MinerChartData instances and nil on success, or an empty slice and error on failure.
+</p>
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="MinerDailyStats">type <a href="/src/github.com/cryptogenic/goflexpool/pkg/api/miner.go?s=968:1257#L16">MinerDailyStats</a>
+				<a class="permalink" href="#MinerDailyStats">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+MinerDailyStats contains miner daily stats data from the /miner/{address}/stats and /miner/{address}/daily endpoint.
+</p>
+
+			<pre>type MinerDailyStats struct {
+<span id="MinerDailyStats.EffectiveHashrate"></span>    EffectiveHashrate <a href="/pkg/builtin/#float64">float64</a> `json:&#34;effective_hashrate&#34;`
+<span id="MinerDailyStats.InvalidShares"></span>    InvalidShares     <a href="/pkg/builtin/#int">int</a>     `json:&#34;invalid_shares&#34;`
+<span id="MinerDailyStats.ReportedHashrate"></span>    ReportedHashrate  <a href="/pkg/builtin/#float64">float64</a> `json:&#34;reported_hashrate&#34;`
+<span id="MinerDailyStats.StaleShares"></span>    StaleShares       <a href="/pkg/builtin/#int">int</a>     `json:&#34;stale_shares&#34;`
+<span id="MinerDailyStats.ValidShares"></span>    ValidShares       <a href="/pkg/builtin/#int">int</a>     `json:&#34;valid_shares&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="MinerGetDaily">func <a href="/src/github.com/cryptogenic/goflexpool/pkg/api/miner.go?s=5932:5991#L145">MinerGetDaily</a>
+					<a class="permalink" href="#MinerGetDaily">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func MinerGetDaily(address <a href="/pkg/builtin/#string">string</a>) (<a href="#MinerDailyStats">MinerDailyStats</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
+				<p>
+MinerGetDaily takes a mining wallet address and gets the effective and reported hashrate of that address, as well
+as it&#39;s amount of stale and valid shares over the last 24 hours. Returns a MinerDailyStats instance and nil on success,
+or an empty MinerDailyStats and error on failure.
+</p>
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="MinerDetails">type <a href="/src/github.com/cryptogenic/goflexpool/pkg/api/miner.go?s=4136:4475#L97">MinerDetails</a>
+				<a class="permalink" href="#MinerDetails">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+MinerDetails contains overview data from the /miner/{address}/details endpoint.
+</p>
+
+			<pre>type MinerDetails struct {
+<span id="MinerDetails.MinPayoutThreshold"></span>    MinPayoutThreshold <a href="/pkg/builtin/#uint">uint</a>    `json:&#34;min_payout_threshold&#34;`
+<span id="MinerDetails.PoolDonation"></span>    PoolDonation       <a href="/pkg/builtin/#float64">float64</a> `json:&#34;pool_donation&#34;`
+<span id="MinerDetails.MaxFeePrice"></span>    MaxFeePrice        <a href="/pkg/builtin/#uint">uint</a>    `json:&#34;max_fee_price&#34;`
+<span id="MinerDetails.CensoredEmail"></span>    CensoredEmail      <a href="/pkg/builtin/#string">string</a>  `json:&#34;censored_email&#34;`
+<span id="MinerDetails.CensoredIp"></span>    CensoredIp         <a href="/pkg/builtin/#string">string</a>  `json:&#34;censored_ip&#34;`
+<span id="MinerDetails.FirstJoined"></span>    FirstJoined        <a href="/pkg/builtin/#uint">uint</a>    `json:&#34;first_joined&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="MinerGetDetails">func <a href="/src/github.com/cryptogenic/goflexpool/pkg/api/miner.go?s=16083:16141#L425">MinerGetDetails</a>
+					<a class="permalink" href="#MinerGetDetails">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func MinerGetDetails(address <a href="/pkg/builtin/#string">string</a>) (<a href="#MinerDetails">MinerDetails</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
+				<p>
+MinerGetDetails takes a mining wallet address and gets the overall meta details of that wallet. Returns a MinerDetails
+instance and nil on success, or an empty MinerDetails instance and error on failure.
+</p>
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="MinerPayment">type <a href="/src/github.com/cryptogenic/goflexpool/pkg/api/miner.go?s=2874:3041#L61">MinerPayment</a>
+				<a class="permalink" href="#MinerPayment">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+MinerPayment contains payment entries from the /miner/{address}/payments endpoint.
+</p>
+
+			<pre>type MinerPayment struct {
+<span id="MinerPayment.Txid"></span>    Txid      <a href="/pkg/builtin/#string">string</a> `json:&#34;txid&#34;`
+<span id="MinerPayment.Amount"></span>    Amount    <a href="/pkg/builtin/#uint">uint</a>   `json:&#34;amount&#34;`
+<span id="MinerPayment.Timestamp"></span>    Timestamp <a href="/pkg/builtin/#uint">uint</a>   `json:&#34;timestamp&#34;`
+<span id="MinerPayment.Duration"></span>    Duration  <a href="/pkg/builtin/#uint">uint</a>   `json:&#34;duration&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="MinerPaymentChart">type <a href="/src/github.com/cryptogenic/goflexpool/pkg/api/miner.go?s=3465:3565#L77">MinerPaymentChart</a>
+				<a class="permalink" href="#MinerPaymentChart">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+MinerPaymentChart contains payment chart data from the /miner/{address}/paymentsChart endpoint.
+</p>
+
+			<pre>type MinerPaymentChart struct {
+<span id="MinerPaymentChart.Amount"></span>    Amount    <a href="/pkg/builtin/#uint">uint</a> `json:&#34;amount&#34;`
+<span id="MinerPaymentChart.Timestamp"></span>    Timestamp <a href="/pkg/builtin/#uint">uint</a> `json:&#34;timestamp&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="MinerGetPaymentChart">func <a href="/src/github.com/cryptogenic/goflexpool/pkg/api/miner.go?s=12880:12950#L336">MinerGetPaymentChart</a>
+					<a class="permalink" href="#MinerGetPaymentChart">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func MinerGetPaymentChart(address <a href="/pkg/builtin/#string">string</a>) ([]<a href="#MinerPaymentChart">MinerPaymentChart</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
+				<p>
+MinerGetPaymentChart takes a mining wallet address and gets a list of payments made to that address. Returns a slice of
+MinerPaymentChart instances and nil on success, an empty slice and error on failure.
+</p>
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="MinerPaymentData">type <a href="/src/github.com/cryptogenic/goflexpool/pkg/api/miner.go?s=3136:3364#L69">MinerPaymentData</a>
+				<a class="permalink" href="#MinerPaymentData">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+MinerPaymentData contains paged payment data from the /miner/{address}/payments endpoint.
+</p>
+
+			<pre>type MinerPaymentData struct {
+<span id="MinerPaymentData.Data"></span>    Data         []<a href="#MinerPayment">MinerPayment</a> `json:&#34;data&#34;`
+<span id="MinerPaymentData.ItemsPerPage"></span>    ItemsPerPage <a href="/pkg/builtin/#int">int</a>            `json:&#34;items_per_page&#34;`
+<span id="MinerPaymentData.TotalItems"></span>    TotalItems   <a href="/pkg/builtin/#int">int</a>            `json:&#34;total_items&#34;`
+<span id="MinerPaymentData.TotalPages"></span>    TotalPages   <a href="/pkg/builtin/#int">int</a>            `json:&#34;total_pages&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="MinerGetPayments">func <a href="/src/github.com/cryptogenic/goflexpool/pkg/api/miner.go?s=11185:11258#L284">MinerGetPayments</a>
+					<a class="permalink" href="#MinerGetPayments">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func MinerGetPayments(address <a href="/pkg/builtin/#string">string</a>, page <a href="/pkg/builtin/#int">int</a>) (<a href="#MinerPaymentData">MinerPaymentData</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
+				<p>
+MinerGetPayments takes a mining wallet address and a page number, and gets a list of payment data for that address + page.
+Returns a MinerPaymentData instance and nil on success, or an empty MinerPaymentData instance and error on failure.
+</p>
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="MinerStats">type <a href="/src/github.com/cryptogenic/goflexpool/pkg/api/miner.go?s=1346:1460#L25">MinerStats</a>
+				<a class="permalink" href="#MinerStats">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+MinerDailyStats contains miner stats data from the /miner/{address}/stats endpoint.
+</p>
+
+			<pre>type MinerStats struct {
+<span id="MinerStats.Current"></span>    Current <a href="#WorkerCurrentStats">WorkerCurrentStats</a> `json:&#34;current&#34;`
+<span id="MinerStats.Daily"></span>    Daily   <a href="#MinerDailyStats">MinerDailyStats</a>    `json:&#34;daily&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="MinerGetStats">func <a href="/src/github.com/cryptogenic/goflexpool/pkg/api/miner.go?s=6788:6842#L166">MinerGetStats</a>
+					<a class="permalink" href="#MinerGetStats">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func MinerGetStats(address <a href="/pkg/builtin/#string">string</a>) (<a href="#MinerStats">MinerStats</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
+				<p>
+MinerGetStats takes a mining wallet address and gets the current and daily stats of that address. Returns a
+MinerStats instance and nil on success, or an empty MinerStats instance and error on failure.
+</p>
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="MinerWorker">type <a href="/src/github.com/cryptogenic/goflexpool/pkg/api/miner.go?s=1738:2250#L37">MinerWorker</a>
+				<a class="permalink" href="#MinerWorker">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+MinerWorker contains worker data entries from the /miner/{address}/workers endpoint.
+</p>
+
+			<pre>type MinerWorker struct {
+<span id="MinerWorker.Name"></span>    Name                   <a href="/pkg/builtin/#string">string</a> `json:&#34;name&#34;`
+<span id="MinerWorker.Online"></span>    Online                 <a href="/pkg/builtin/#bool">bool</a>   `json:&#34;online&#34;`
+<span id="MinerWorker.DuplicateWorkersMerged"></span>    DuplicateWorkersMerged <a href="/pkg/builtin/#int">int</a>    `json:&#34;duplicate_workers_merged&#34;`
+<span id="MinerWorker.ReportedHashrate"></span>    ReportedHashrate       <a href="/pkg/builtin/#uint">uint</a>   `json:&#34;reported_hashrate&#34;`
+<span id="MinerWorker.EffectiveHashrate"></span>    EffectiveHashrate      <a href="/pkg/builtin/#uint">uint</a>   `json:&#34;effective_hashrate&#34;`
+<span id="MinerWorker.ValidShares"></span>    ValidShares            <a href="/pkg/builtin/#int">int</a>    `json:&#34;valid_shares&#34;`
+<span id="MinerWorker.StaleShares"></span>    StaleShares            <a href="/pkg/builtin/#int">int</a>    `json:&#34;stale_shares&#34;`
+<span id="MinerWorker.InvalidShares"></span>    InvalidShares          <a href="/pkg/builtin/#int">int</a>    `json:&#34;invalid_shares&#34;`
+<span id="MinerWorker.LastSeen"></span>    LastSeen               <a href="/pkg/builtin/#int">int</a>    `json:&#34;last_seen&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="MinerGetWorkers">func <a href="/src/github.com/cryptogenic/goflexpool/pkg/api/miner.go?s=8643:8702#L216">MinerGetWorkers</a>
+					<a class="permalink" href="#MinerGetWorkers">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func MinerGetWorkers(address <a href="/pkg/builtin/#string">string</a>) ([]<a href="#MinerWorker">MinerWorker</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
+				<p>
+MinerGetWorkers takes a mining wallet address and gets a list of the active workers for that address. Returns a slice
+of MinerWorker instances and nil on success, or an empty slice and error on failure.
+</p>
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="MinerWorkerCount">type <a href="/src/github.com/cryptogenic/goflexpool/pkg/api/miner.go?s=1557:1648#L31">MinerWorkerCount</a>
+				<a class="permalink" href="#MinerWorkerCount">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+MinerWorkerCount contains worker count data from the /miner/{address}/workerCount endpoint.
+</p>
+
+			<pre>type MinerWorkerCount struct {
+<span id="MinerWorkerCount.Online"></span>    Online  <a href="/pkg/builtin/#int">int</a> `json:&#34;online&#34;`
+<span id="MinerWorkerCount.Offline"></span>    Offline <a href="/pkg/builtin/#int">int</a> `json:&#34;offline&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="MinerGetWorkerCount">func <a href="/src/github.com/cryptogenic/goflexpool/pkg/api/miner.go?s=7985:8051#L195">MinerGetWorkerCount</a>
+					<a class="permalink" href="#MinerGetWorkerCount">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func MinerGetWorkerCount(address <a href="/pkg/builtin/#string">string</a>) (<a href="#MinerWorkerCount">MinerWorkerCount</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
+				<p>
+MinerGetWorkerCount takes a mining wallet address and gets the offline and online worker counts for that address. Returns
+a MinerWorkerCount instance and nil on success, or an empty MinerWorkerCount instance and error on failure.
+</p>
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="PoolAvgLuckRoundTime">type <a href="/src/github.com/cryptogenic/goflexpool/pkg/api/pool.go?s=1857:1965#L51">PoolAvgLuckRoundTime</a>
+				<a class="permalink" href="#PoolAvgLuckRoundTime">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+PoolAvgLuckRoundTime contains luck data from the /pool/avgLuckRoundtime endpoint.
+</p>
+
+			<pre>type PoolAvgLuckRoundTime struct {
+<span id="PoolAvgLuckRoundTime.Luck"></span>    Luck      <a href="/pkg/builtin/#float64">float64</a> `json:&#34;luck&#34;`
+<span id="PoolAvgLuckRoundTime.RoundTime"></span>    RoundTime <a href="/pkg/builtin/#float64">float64</a> `json:&#34;round_time&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="PoolGetAverageLuckRoundTime">func <a href="/src/github.com/cryptogenic/goflexpool/pkg/api/pool.go?s=9134:9198#L272">PoolGetAverageLuckRoundTime</a>
+					<a class="permalink" href="#PoolGetAverageLuckRoundTime">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func PoolGetAverageLuckRoundTime() (<a href="#PoolAvgLuckRoundTime">PoolAvgLuckRoundTime</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
+				<p>
+PoolGetAverageLuckRoundTime gets the pool&#39;s current average luck as a percent and roundtime in seconds. Returns a
+PoolAvgLuckRoundTime instance and nil on success, or an empty PoolAvgLuckRoundTime and error on failure.
+</p>
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="PoolBlockCount">type <a href="/src/github.com/cryptogenic/goflexpool/pkg/api/pool.go?s=712:816#L19">PoolBlockCount</a>
+				<a class="permalink" href="#PoolBlockCount">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+PoolBlockCount contains pool block data from the /pool/blockCount endpoint.
+</p>
+
+			<pre>type PoolBlockCount struct {
+<span id="PoolBlockCount.Confirmed"></span>    Confirmed   <a href="/pkg/builtin/#int">int</a> `json:&#34;confirmed&#34;`
+<span id="PoolBlockCount.Unconfirmed"></span>    Unconfirmed <a href="/pkg/builtin/#int">int</a> `json:&#34;unconfirmed&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="PoolGetBlockCount">func <a href="/src/github.com/cryptogenic/goflexpool/pkg/api/pool.go?s=6619:6667#L191">PoolGetBlockCount</a>
+					<a class="permalink" href="#PoolGetBlockCount">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func PoolGetBlockCount() (<a href="#PoolBlockCount">PoolBlockCount</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
+				<p>
+PoolGetBlockCount gets how many blocks have been mined by the pool. Returns a PoolBlockCount instance and nil on success,
+or an empty PoolBlockCount and error on failure.
+</p>
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="PoolBlockData">type <a href="/src/github.com/cryptogenic/goflexpool/pkg/api/pool.go?s=893:1090#L25">PoolBlockData</a>
+				<a class="permalink" href="#PoolBlockData">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+PoolBlockData contains paged block data from the /pool/blocks endpoint.
+</p>
+
+			<pre>type PoolBlockData struct {
+<span id="PoolBlockData.Data"></span>    Data         []<a href="#Block">Block</a> `json:&#34;data&#34;`
+<span id="PoolBlockData.ItemsPerPage"></span>    ItemsPerPage <a href="/pkg/builtin/#int">int</a>     `json:&#34;items_per_page&#34;`
+<span id="PoolBlockData.TotalItems"></span>    TotalItems   <a href="/pkg/builtin/#int">int</a>     `json:&#34;total_items&#34;`
+<span id="PoolBlockData.TotalPages"></span>    TotalPages   <a href="/pkg/builtin/#int">int</a>     `json:&#34;total_pages&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="PoolGetBlocks">func <a href="/src/github.com/cryptogenic/goflexpool/pkg/api/pool.go?s=4758:4809#L145">PoolGetBlocks</a>
+					<a class="permalink" href="#PoolGetBlocks">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func PoolGetBlocks(page <a href="/pkg/builtin/#int">int</a>) (<a href="#PoolBlockData">PoolBlockData</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
+				<p>
+PoolGetBlocks takes a page number and gets a list of blocks the pool has mined from that page. Returns a PoolBlockData
+instance and nil on success, or an empty PoolBlockData and error on failure.
+</p>
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="PoolDonatorInfo">type <a href="/src/github.com/cryptogenic/goflexpool/pkg/api/pool.go?s=1566:1770#L43">PoolDonatorInfo</a>
+				<a class="permalink" href="#PoolDonatorInfo">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+PoolDonatorInfo contains donation data for the top donators from the /pool/topDonators endpoint.
+</p>
+
+			<pre>type PoolDonatorInfo struct {
+<span id="PoolDonatorInfo.Address"></span>    Address      <a href="/pkg/builtin/#string">string</a>  `json:&#34;address&#34;`
+<span id="PoolDonatorInfo.PoolDonation"></span>    PoolDonation <a href="/pkg/builtin/#float64">float64</a> `json:&#34;pool_donation&#34;`
+<span id="PoolDonatorInfo.TotalDonated"></span>    TotalDonated <a href="/pkg/builtin/#uint">uint</a>    `json:&#34;total_donated&#34;`
+<span id="PoolDonatorInfo.FirstJoined"></span>    FirstJoined  <a href="/pkg/builtin/#uint">uint</a>    `json:&#34;first_joined&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="PoolGetTopDonators">func <a href="/src/github.com/cryptogenic/goflexpool/pkg/api/pool.go?s=8197:8249#L243">PoolGetTopDonators</a>
+					<a class="permalink" href="#PoolGetTopDonators">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func PoolGetTopDonators() ([]<a href="#PoolDonatorInfo">PoolDonatorInfo</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
+				<p>
+PoolGetTopDonators gets a list of the top donators in the pool. Returns a slice of PoolDonatorInfo instances and nil
+on success, or an empty slice and error on failure.
+</p>
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="PoolHashrate">type <a href="/src/github.com/cryptogenic/goflexpool/pkg/api/pool.go?s=120:295#L1">PoolHashrate</a>
+				<a class="permalink" href="#PoolHashrate">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+PoolHashrate contains pool hashrate stats data from the /pool/hashrate endpoint.
+</p>
+
+			<pre>type PoolHashrate struct {
+<span id="PoolHashrate.As"></span>    As    <a href="/pkg/builtin/#uint">uint</a> `json:&#34;as&#34;`
+<span id="PoolHashrate.Au"></span>    Au    <a href="/pkg/builtin/#uint">uint</a> `json:&#34;au&#34;`
+<span id="PoolHashrate.Eu"></span>    Eu    <a href="/pkg/builtin/#uint">uint</a> `json:&#34;eu&#34;`
+<span id="PoolHashrate.Sa"></span>    Sa    <a href="/pkg/builtin/#uint">uint</a> `json:&#34;sa&#34;`
+<span id="PoolHashrate.Total"></span>    Total <a href="/pkg/builtin/#uint">uint</a> `json:&#34;total&#34;`
+<span id="PoolHashrate.Us"></span>    Us    <a href="/pkg/builtin/#uint">uint</a> `json:&#34;us&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="PoolGetHashrate">func <a href="/src/github.com/cryptogenic/goflexpool/pkg/api/pool.go?s=2156:2200#L58">PoolGetHashrate</a>
+					<a class="permalink" href="#PoolGetHashrate">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func PoolGetHashrate() (<a href="#PoolHashrate">PoolHashrate</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
+				<p>
+PoolGetHashrate gets the hashrate of the pool for each region in hashes per second. Returns a PoolHashrate instance and
+nil on success, or an empty PoolHashrate and error on failure.
+</p>
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="PoolHashrateChartData">type <a href="/src/github.com/cryptogenic/goflexpool/pkg/api/pool.go?s=388:631#L8">PoolHashrateChartData</a>
+				<a class="permalink" href="#PoolHashrateChartData">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+PoolHashrateChartData contains pool data entries from the /pool/hashrateChart endpoint.
+</p>
+
+			<pre>type PoolHashrateChartData struct {
+<span id="PoolHashrateChartData.As"></span>    As        <a href="/pkg/builtin/#uint">uint</a> `json:&#34;as&#34;`
+<span id="PoolHashrateChartData.Au"></span>    Au        <a href="/pkg/builtin/#uint">uint</a> `json:&#34;au&#34;`
+<span id="PoolHashrateChartData.Eu"></span>    Eu        <a href="/pkg/builtin/#uint">uint</a> `json:&#34;eu&#34;`
+<span id="PoolHashrateChartData.Sa"></span>    Sa        <a href="/pkg/builtin/#uint">uint</a> `json:&#34;sa&#34;`
+<span id="PoolHashrateChartData.Timestamp"></span>    Timestamp <a href="/pkg/builtin/#uint">uint</a> `json:&#34;timestamp&#34;`
+<span id="PoolHashrateChartData.Total"></span>    Total     <a href="/pkg/builtin/#uint">uint</a> `json:&#34;total&#34;`
+<span id="PoolHashrateChartData.Us"></span>    Us        <a href="/pkg/builtin/#uint">uint</a> `json:&#34;us&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="PoolGetHashrateChart">func <a href="/src/github.com/cryptogenic/goflexpool/pkg/api/pool.go?s=2931:2991#L83">PoolGetHashrateChart</a>
+					<a class="permalink" href="#PoolGetHashrateChart">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func PoolGetHashrateChart() ([]<a href="#PoolHashrateChartData">PoolHashrateChartData</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
+				<p>
+PoolGetHashrateChart gets a list of hashrate chart data for the pool. Returns a slice of PoolHashrateChartData instances
+and nil on success, or an empty slice and error on failure.
+</p>
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="PoolMinerInfo">type <a href="/src/github.com/cryptogenic/goflexpool/pkg/api/pool.go?s=1183:1464#L33">PoolMinerInfo</a>
+				<a class="permalink" href="#PoolMinerInfo">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+PoolMinerInfo contains miner data for the top miners from the /pool/topMiners endpoint.
+</p>
+
+			<pre>type PoolMinerInfo struct {
+<span id="PoolMinerInfo.Address"></span>    Address      <a href="/pkg/builtin/#string">string</a>  `json:&#34;address&#34;`
+<span id="PoolMinerInfo.Hashrate"></span>    Hashrate     <a href="/pkg/builtin/#uint">uint</a>    `json:&#34;hashrate&#34;`
+<span id="PoolMinerInfo.TotalWorkers"></span>    TotalWorkers <a href="/pkg/builtin/#int">int</a>     `json:&#34;total_workers&#34;`
+<span id="PoolMinerInfo.Balance"></span>    Balance      <a href="/pkg/builtin/#uint">uint</a>    `json:&#34;balance&#34;`
+<span id="PoolMinerInfo.PoolDonation"></span>    PoolDonation <a href="/pkg/builtin/#float64">float64</a> `json:&#34;pool_donation&#34;`
+<span id="PoolMinerInfo.FirstJoined"></span>    FirstJoined  <a href="/pkg/builtin/#uint">uint</a>    `json:&#34;first_joined&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="PoolGetTopMiners">func <a href="/src/github.com/cryptogenic/goflexpool/pkg/api/pool.go?s=7224:7272#L212">PoolGetTopMiners</a>
+					<a class="permalink" href="#PoolGetTopMiners">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func PoolGetTopMiners() ([]<a href="#PoolMinerInfo">PoolMinerInfo</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
+				<p>
+PoolGetTopMiners gets a list of the top miners in the pool. Returns a slice of PoolMinerInfo instances and nil on
+success, or an empty slice and error on failure.
+</p>
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="Response">type <a href="/src/github.com/cryptogenic/goflexpool/pkg/api/networking.go?s=679:778#L23">Response</a>
+				<a class="permalink" href="#Response">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+Response is the primary container used for all responses from any API endpoint, containing the result and the error.
+</p>
+
+			<pre>type Response struct {
+<span id="Response.Error"></span>    Error  <a href="#ResponseError">ResponseError</a> `json:&#34;error&#34;`
+<span id="Response.Result"></span>    Result interface{}   `json:&#34;result&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ResponseError">type <a href="/src/github.com/cryptogenic/goflexpool/pkg/api/networking.go?s=465:557#L17">ResponseError</a>
+				<a class="permalink" href="#ResponseError">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+ResponseError contains the error-related data that could be returned from the API if it&#39;s used incorrectly.
+</p>
+
+			<pre>type ResponseError struct {
+<span id="ResponseError.Code"></span>    Code    <a href="/pkg/builtin/#int">int</a>    `json:&#34;code&#34;`
+<span id="ResponseError.Message"></span>    Message <a href="/pkg/builtin/#string">string</a> `json:&#34;message&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="WorkerChartData">type <a href="/src/github.com/cryptogenic/goflexpool/pkg/api/worker.go?s=933:1380#L15">WorkerChartData</a>
+				<a class="permalink" href="#WorkerChartData">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+WorkerChartData contains chart data entries from the /worker/{address}/{worker}/chart endpoint.
+</p>
+
+			<pre>type WorkerChartData struct {
+<span id="WorkerChartData.Timestamp"></span>    Timestamp                <a href="/pkg/builtin/#uint">uint</a>    `json:&#34;timestamp&#34;`
+<span id="WorkerChartData.EffectiveHashrate"></span>    EffectiveHashrate        <a href="/pkg/builtin/#uint">uint</a>    `json:&#34;effective_hashrate&#34;`
+<span id="WorkerChartData.AverageEffectiveHashrate"></span>    AverageEffectiveHashrate <a href="/pkg/builtin/#float64">float64</a> `json:&#34;average_effective_hashrate&#34;`
+<span id="WorkerChartData.ReportedHashrate"></span>    ReportedHashrate         <a href="/pkg/builtin/#uint">uint</a>    `json:&#34;reported_hashrate&#34;`
+<span id="WorkerChartData.ValidShares"></span>    ValidShares              <a href="/pkg/builtin/#int">int</a>     `json:&#34;valid_shares&#34;`
+<span id="WorkerChartData.StaleShares"></span>    StaleShares              <a href="/pkg/builtin/#int">int</a>     `json:&#34;stale_shares&#34;`
+<span id="WorkerChartData.InvalidShares"></span>    InvalidShares            <a href="/pkg/builtin/#int">int</a>     `json:&#34;invalid_shares&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="WorkerGetChart">func <a href="/src/github.com/cryptogenic/goflexpool/pkg/api/worker.go?s=4605:4682#L102">WorkerGetChart</a>
+					<a class="permalink" href="#WorkerGetChart">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func WorkerGetChart(address <a href="/pkg/builtin/#string">string</a>, worker <a href="/pkg/builtin/#string">string</a>) ([]<a href="#WorkerChartData">WorkerChartData</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
+				<p>
+WorkerGetChart takes a mining wallet address and worker name, and gets a list of chart data for that address. Returns
+a slice of MinerChartData instances and nil on success, or an empty slice and error on failure.
+</p>
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="WorkerCurrentStats">type <a href="/src/github.com/cryptogenic/goflexpool/pkg/api/worker.go?s=89:226#L1">WorkerCurrentStats</a>
+				<a class="permalink" href="#WorkerCurrentStats">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+WorkerCurrentStats contains hashrate stats - used by multiple endpoints.
+</p>
+
+			<pre>type WorkerCurrentStats struct {
+<span id="WorkerCurrentStats.EffectiveHashrate"></span>    EffectiveHashrate <a href="/pkg/builtin/#uint">uint</a> `json:&#34;effective_hashrate&#34;`
+<span id="WorkerCurrentStats.ReportedHashrate"></span>    ReportedHashrate  <a href="/pkg/builtin/#uint">uint</a> `json:&#34;reported_hashrate&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="MinerGetCurrent">func <a href="/src/github.com/cryptogenic/goflexpool/pkg/api/miner.go?s=5153:5217#L125">MinerGetCurrent</a>
+					<a class="permalink" href="#MinerGetCurrent">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func MinerGetCurrent(address <a href="/pkg/builtin/#string">string</a>) (<a href="#WorkerCurrentStats">WorkerCurrentStats</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
+				<p>
+MinerGetCurrent takes a mining wallet address and gets the current effective and reported hashrate of that address.
+Returns a WorkerCurrentStats instance and nil on success, or an empty WorkerCurrentStats and error on failure.
+</p>
+
+				
+				
+			
+				
+				<h3 id="WorkerGetCurrent">func <a href="/src/github.com/cryptogenic/goflexpool/pkg/api/worker.go?s=1633:1713#L27">WorkerGetCurrent</a>
+					<a class="permalink" href="#WorkerGetCurrent">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func WorkerGetCurrent(address <a href="/pkg/builtin/#string">string</a>, worker <a href="/pkg/builtin/#string">string</a>) (<a href="#WorkerCurrentStats">WorkerCurrentStats</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
+				<p>
+WorkerGetCurrent takes a mining wallet address and worker name, and gets the current effective and reported hashrate of
+that address. Returns a WorkerCurrentStats instance and nil on success, or an empty WorkerCurrentStats and error on failure.
+</p>
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="WorkerDailyStats">type <a href="/src/github.com/cryptogenic/goflexpool/pkg/api/worker.go?s=340:615#L1">WorkerDailyStats</a>
+				<a class="permalink" href="#WorkerDailyStats">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+WorkerDailyStats contains daily hashrate and share stats from the /worker/{address}/{worker}/daily endpoint.
+</p>
+
+			<pre>type WorkerDailyStats struct {
+<span id="WorkerDailyStats.EffectiveHashrate"></span>    EffectiveHashrate <a href="/pkg/builtin/#uint">uint</a> `json:&#34;effective_hashrate&#34;`
+<span id="WorkerDailyStats.InvalidShares"></span>    InvalidShares     <a href="/pkg/builtin/#int">int</a>  `json:&#34;invalid_shares&#34;`
+<span id="WorkerDailyStats.ReportedHashrate"></span>    ReportedHashrate  <a href="/pkg/builtin/#uint">uint</a> `json:&#34;reported_hashrate&#34;`
+<span id="WorkerDailyStats.StaleShares"></span>    StaleShares       <a href="/pkg/builtin/#int">int</a>  `json:&#34;stale_shares&#34;`
+<span id="WorkerDailyStats.ValidShares"></span>    ValidShares       <a href="/pkg/builtin/#int">int</a>  `json:&#34;valid_shares&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="WorkerGetDaily">func <a href="/src/github.com/cryptogenic/goflexpool/pkg/api/worker.go?s=2460:2536#L49">WorkerGetDaily</a>
+					<a class="permalink" href="#WorkerGetDaily">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func WorkerGetDaily(address <a href="/pkg/builtin/#string">string</a>, worker <a href="/pkg/builtin/#string">string</a>) (<a href="#WorkerDailyStats">WorkerDailyStats</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
+				<p>
+WorkerGetDaily takes a mining wallet address and worker name, and gets the daily effective and reported hashrate of that
+address as well as it&#39;s amount of stale and valid shares over the last 24 hours. Returns a WorkerDailyStats instance
+and nil on success, an empty WorkerDailyStats and error on failure.
+</p>
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="WorkerStats">type <a href="/src/github.com/cryptogenic/goflexpool/pkg/api/worker.go?s=717:832#L9">WorkerStats</a>
+				<a class="permalink" href="#WorkerStats">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+WorkerStats contains current and daily stats from the /worker/{address}/{worker}/stats endpoint.
+</p>
+
+			<pre>type WorkerStats struct {
+<span id="WorkerStats.Current"></span>    Current <a href="#WorkerCurrentStats">WorkerCurrentStats</a> `json:&#34;current&#34;`
+<span id="WorkerStats.Daily"></span>    Daily   <a href="#WorkerDailyStats">WorkerDailyStats</a>   `json:&#34;daily&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="WorkerGetStats">func <a href="/src/github.com/cryptogenic/goflexpool/pkg/api/worker.go?s=3387:3458#L73">WorkerGetStats</a>
+					<a class="permalink" href="#WorkerGetStats">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func WorkerGetStats(address <a href="/pkg/builtin/#string">string</a>, worker <a href="/pkg/builtin/#string">string</a>) (<a href="#WorkerStats">WorkerStats</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
+				<p>
+WorkerGetStats takes a mining wallet address and worker name, and gets the current and daily stats of that worker. Returns
+a WorkerStats instance and nil on success, or an empty WorkerStats instance and error on failure.
+</p>
+
+				
+				
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.12.12.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="/LICENSE">BSD license</a>.<br>
+<a href="/doc/tos.html">Terms of Service</a> |
+<a href="http://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>
+

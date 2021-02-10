@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>utils - The Go Programming Language</title>
+
+<link type="text/css" rel="stylesheet" href="./lib/godoc/style.css">
+
+
+<script>window.initFuncs = [];</script>
+<script src="./lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.12.12";</script>
+<script src="./lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package utils
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/cryptogenic/goflexpool/pkg/utils"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="#pkg-constants">Constants</a></dd>
+			
+			
+			
+				
+				<dd><a href="#CalculateAverageBlockReward">func CalculateAverageBlockReward(blocks []api.Block) uint</a></dd>
+			
+				
+				<dd><a href="#CalculateAverageBlocksPerDay">func CalculateAverageBlocksPerDay(blocks []api.Block) int</a></dd>
+			
+				
+				<dd><a href="#CalculateExpectedRoundTime">func CalculateExpectedRoundTime(networkHashrate uint, poolHashrate uint, averageBlocktime int) uint</a></dd>
+			
+				
+				<dd><a href="#CalculatePPLNSShareWindow">func CalculatePPLNSShareWindow(N int, shareDifficulty uint, poolHashrate uint) uint</a></dd>
+			
+				
+				<dd><a href="#CalculateUncleRate">func CalculateUncleRate(blocks []api.Block) float64</a></dd>
+			
+				
+				<dd><a href="#ConvertEthToGwei">func ConvertEthToGwei(eth float64) uint</a></dd>
+			
+				
+				<dd><a href="#ConvertGweiToEth">func ConvertGweiToEth(gwei uint) float64</a></dd>
+			
+				
+				<dd><a href="#ConvertHashrate">func ConvertHashrate(inputHashrate uint, inputHashrateUnit HashrateUnit, outputHashrateUnit HashrateUnit) uint</a></dd>
+			
+			
+				
+				<dd><a href="#HashrateUnit">type HashrateUnit</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="/src/github.com/cryptogenic/goflexpool/pkg/utils/converters.go">converters.go</a>
+			
+				<a href="/src/github.com/cryptogenic/goflexpool/pkg/utils/pool.go">pool.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				<p>
+Power exponentials for unit conversions.
+</p>
+
+				<pre>const (
+    <span id="BasePow10Exponential">BasePow10Exponential</span> = 0
+    <span id="KiloPow10Exponential">KiloPow10Exponential</span> = 3
+    <span id="MegaPow10Exponential">MegaPow10Exponential</span> = 6
+    <span id="GigaPow10Exponential">GigaPow10Exponential</span> = 9
+    <span id="TeraPow10Exponential">TeraPow10Exponential</span> = 12
+    <span id="PetaPow10Exponential">PetaPow10Exponential</span> = 15
+)</pre>
+			
+				
+				<pre>const <span id="WeiRatio">WeiRatio</span> = 0.000000001</pre>
+			
+		
+		
+		
+			
+			
+			<h2 id="CalculateAverageBlockReward">func <a href="/src/github.com/cryptogenic/goflexpool/pkg/utils/pool.go?s=1575:1632#L27">CalculateAverageBlockReward</a>
+				<a class="permalink" href="#CalculateAverageBlockReward">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func CalculateAverageBlockReward(blocks []<a href="/pkg/github.com/cryptogenic/goflexpool/pkg/api/">api</a>.<a href="/pkg/github.com/cryptogenic/goflexpool/pkg/api/#Block">Block</a>) <a href="/pkg/builtin/#uint">uint</a></pre>
+			<p>
+CalculateAverageBlockReward takes a slice of api.Block instances and calculates the average reward per block in gwei
+and returns it as an int.
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="CalculateAverageBlocksPerDay">func <a href="/src/github.com/cryptogenic/goflexpool/pkg/utils/pool.go?s=1950:2007#L39">CalculateAverageBlocksPerDay</a>
+				<a class="permalink" href="#CalculateAverageBlocksPerDay">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func CalculateAverageBlocksPerDay(blocks []<a href="/pkg/github.com/cryptogenic/goflexpool/pkg/api/">api</a>.<a href="/pkg/github.com/cryptogenic/goflexpool/pkg/api/#Block">Block</a>) <a href="/pkg/builtin/#int">int</a></pre>
+			<p>
+CalculateAverageBlocksPerDay takes a slice of api.Block instances and calculates the number of blocks found per day
+based on the roundtime of the blocks.
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="CalculateExpectedRoundTime">func <a href="/src/github.com/cryptogenic/goflexpool/pkg/utils/pool.go?s=409:508#L1">CalculateExpectedRoundTime</a>
+				<a class="permalink" href="#CalculateExpectedRoundTime">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func CalculateExpectedRoundTime(networkHashrate <a href="/pkg/builtin/#uint">uint</a>, poolHashrate <a href="/pkg/builtin/#uint">uint</a>, averageBlocktime <a href="/pkg/builtin/#int">int</a>) <a href="/pkg/builtin/#uint">uint</a></pre>
+			<p>
+CalculateExpectedRoundTime takes a given network hashrate, pool hashrate, and average block time, and calculates what
+the expected roundtime should be in seconds. The units for the network and pool hashrate do not matter as long as they&#39;re
+consistent and the same unit. Megahashes/second is recommended for reasonable accuracy.
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="CalculatePPLNSShareWindow">func <a href="/src/github.com/cryptogenic/goflexpool/pkg/utils/pool.go?s=956:1039#L8">CalculatePPLNSShareWindow</a>
+				<a class="permalink" href="#CalculatePPLNSShareWindow">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func CalculatePPLNSShareWindow(N <a href="/pkg/builtin/#int">int</a>, shareDifficulty <a href="/pkg/builtin/#uint">uint</a>, poolHashrate <a href="/pkg/builtin/#uint">uint</a>) <a href="/pkg/builtin/#uint">uint</a></pre>
+			<p>
+CalculatePPLNSShareWindow takes the N value, the pool&#39;s current share difficulty, and the pool&#39;s hashrate to calculate
+how many seconds it will take for those shares to be exhausted / expire. The units for the share difficulty and pool
+hashrate do not matter as long as they&#39;re consistent and the same unit. Megahashes/second is recommended for reasonable
+accuracy.
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="CalculateUncleRate">func <a href="/src/github.com/cryptogenic/goflexpool/pkg/utils/pool.go?s=1212:1263#L13">CalculateUncleRate</a>
+				<a class="permalink" href="#CalculateUncleRate">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func CalculateUncleRate(blocks []<a href="/pkg/github.com/cryptogenic/goflexpool/pkg/api/">api</a>.<a href="/pkg/github.com/cryptogenic/goflexpool/pkg/api/#Block">Block</a>) <a href="/pkg/builtin/#float64">float64</a></pre>
+			<p>
+CalculateUncleRate takes a slice of api.Block instances and returns the uncle rate as a percentage as a float64.
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="ConvertEthToGwei">func <a href="/src/github.com/cryptogenic/goflexpool/pkg/utils/converters.go?s=2461:2500#L66">ConvertEthToGwei</a>
+				<a class="permalink" href="#ConvertEthToGwei">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ConvertEthToGwei(eth <a href="/pkg/builtin/#float64">float64</a>) <a href="/pkg/builtin/#uint">uint</a></pre>
+			<p>
+ConvertEthToGwei takes an eth value as a float64 and returns it&#39;s value in gwei as an int.
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="ConvertGweiToEth">func <a href="/src/github.com/cryptogenic/goflexpool/pkg/utils/converters.go?s=2288:2328#L61">ConvertGweiToEth</a>
+				<a class="permalink" href="#ConvertGweiToEth">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ConvertGweiToEth(gwei <a href="/pkg/builtin/#uint">uint</a>) <a href="/pkg/builtin/#float64">float64</a></pre>
+			<p>
+ConvertGweiToEth takes a gwei value as an int and returns it&#39;s value in ethereum as a float64.
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="ConvertHashrate">func <a href="/src/github.com/cryptogenic/goflexpool/pkg/utils/converters.go?s=728:838#L22">ConvertHashrate</a>
+				<a class="permalink" href="#ConvertHashrate">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ConvertHashrate(inputHashrate <a href="/pkg/builtin/#uint">uint</a>, inputHashrateUnit <a href="#HashrateUnit">HashrateUnit</a>, outputHashrateUnit <a href="#HashrateUnit">HashrateUnit</a>) <a href="/pkg/builtin/#uint">uint</a></pre>
+			<p>
+ConvertHashrate takes an input hashrate, as well as an input and output HashrateUnit, and converts the input to the
+output hashrate with the given unit conversion. Returns the converted hashrate as an integer.
+</p>
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="HashrateUnit">type <a href="/src/github.com/cryptogenic/goflexpool/pkg/utils/converters.go?s=489:510#L18">HashrateUnit</a>
+				<a class="permalink" href="#HashrateUnit">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+Units for measuring hashrates.
+</p>
+
+			<pre>type HashrateUnit <a href="/pkg/builtin/#int">int</a></pre>
+
+			
+				<p>
+HashrateUnit type values.
+</p>
+
+				<pre>const (
+    <span id="HashesPerSecond">HashesPerSecond</span> <a href="#HashrateUnit">HashrateUnit</a> = <a href="/pkg/builtin/#iota">iota</a>
+    <span id="KiloHashesPerSecond">KiloHashesPerSecond</span>
+    <span id="MegaHashesPerSecond">MegaHashesPerSecond</span>
+    <span id="GigaHashesPerSecond">GigaHashesPerSecond</span>
+    <span id="TeraHashesPerSecond">TeraHashesPerSecond</span>
+    <span id="PetaHashesPerSecond">PetaHashesPerSecond</span>
+)</pre>
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.12.12.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="/LICENSE">BSD license</a>.<br>
+<a href="/doc/tos.html">Terms of Service</a> |
+<a href="http://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>
+
