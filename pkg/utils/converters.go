@@ -68,11 +68,11 @@ func ConvertHashrate(inputHashrate uint, inputHashrateUnit HashrateUnit, outputH
 }
 
 // ConvertGweiToEth takes a gwei value as an int and returns it's value in ethereum as a float64.
-func ConvertGweiToEth(gwei int) float64 {
+func ConvertGweiToEth(gwei uint) float64 {
 	return float64(gwei) * GweiToETHRatio
 }
 
 // ConvertEthToGwei takes an eth value as a float64 and returns it's value in gwei as an int.
-func ConvertEthToGwei(eth float64) int {
-	return int(eth / GweiToETHRatio)
+func ConvertEthToGwei(eth float64) uint {
+	return uint(eth / GweiToETHRatio)
 }
