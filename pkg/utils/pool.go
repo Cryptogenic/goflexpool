@@ -1,7 +1,7 @@
 package utils
 
 import (
-	"../api"
+	"github.com/cryptogenic/goflexpool/pkg/api"
 )
 
 // CalculateExpectedRoundTime takes a given network hashrate, pool hashrate, and average block time, and calculates what
