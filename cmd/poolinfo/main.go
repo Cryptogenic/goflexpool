@@ -93,5 +93,5 @@ func main() {
 	fmt.Printf("PPLNS share window: %s (hh:mm:ss)\n", secondsToHhMmSs(pplnsShareWindowSeconds))
 	fmt.Printf("Uncle rate: %.2f%%\n", uncleRate*100)
 	fmt.Printf("Average blocks per day: %d (average reward: %.8f eth)\n", averageBlocksPerDay, averageBlockRewardEth)
-	fmt.Printf("\t* Averages and uncle rate are over a 100 block period")
+	fmt.Printf("\t* Averages and uncle rate are over a 100 block period\n")
 }
