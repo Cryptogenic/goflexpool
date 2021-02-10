@@ -16,7 +16,7 @@ func CalculateExpectedRoundTime(networkHashrate int, poolHashrate int, averageBl
 // hashrate do not matter as long as they're consistent and the same unit. Megahashes/second is recommended for reasonable
 // accuracy.
 func CalculatePPLNSShareWindow(N int, shareDifficulty int, poolHashrate int) int {
-	return ((N * shareDifficulty) / poolHashrate) / 60
+	return ((N * shareDifficulty) / poolHashrate)
 }
 
 // CalculateUncleRate takes a slice of api.Block instances and returns the uncle rate as a percentage as a float64.
