@@ -7,16 +7,16 @@ import (
 // CalculateExpectedRoundTime takes a given network hashrate, pool hashrate, and average block time, and calculates what
 // the expected roundtime should be in seconds. The units for the network and pool hashrate do not matter as long as they're
 // consistent and the same unit. Megahashes/second is recommended for reasonable accuracy.
-func CalculateExpectedRoundTime(networkHashrate int, poolHashrate int, averageBlocktime int) int {
-	return networkHashrate / poolHashrate * averageBlocktime
+func CalculateExpectedRoundTime(networkHashrate uint, poolHashrate uint, averageBlocktime int) uint {
+	return networkHashrate / poolHashrate * uint(averageBlocktime)
 }
 
 // CalculatePPLNSShareWindow takes the N value, the pool's current share difficulty, and the pool's hashrate to calculate
 // how many seconds it will take for those shares to be exhausted / expire. The units for the share difficulty and pool
 // hashrate do not matter as long as they're consistent and the same unit. Megahashes/second is recommended for reasonable
 // accuracy.
-func CalculatePPLNSShareWindow(N int, shareDifficulty int, poolHashrate int) int {
-	return ((N * shareDifficulty) / poolHashrate)
+func CalculatePPLNSShareWindow(N int, shareDifficulty uint, poolHashrate uint) uint {
+	return (uint(N) * shareDifficulty) / poolHashrate
 }
 
 // CalculateUncleRate takes a slice of api.Block instances and returns the uncle rate as a percentage as a float64.
@@ -34,14 +34,14 @@ func CalculateUncleRate(blocks []api.Block) float64 {
 
 // CalculateAverageBlockReward takes a slice of api.Block instances and calculates the average reward per block in gwei
 // and returns it as an int.
-func CalculateAverageBlockReward(blocks []api.Block) int {
-	blockRewardTotal := 0
+func CalculateAverageBlockReward(blocks []api.Block) uint {
+	blockRewardTotal := uint(0)
 
 	for _, block := range blocks {
-		blockRewardTotal += int(block.TotalRewards)
+		blockRewardTotal += block.TotalRewards
 	}
 
-	return blockRewardTotal / len(blocks)
+	return blockRewardTotal / uint(len(blocks))
 }
 
 // CalculateAverageBlocksPerDay takes a slice of api.Block instances and calculates the number of blocks found per day
