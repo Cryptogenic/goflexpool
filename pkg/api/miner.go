@@ -398,7 +398,7 @@ func MinerGetBlocks(address string, page int) (MinerBlockData, error) {
 				Timestamp:             uint(blockData["timestamp"].(float64)),
 				Confirmed:             blockData["confirmed"].(bool),
 				RoundTime:             uint(blockData["round_time"].(float64)),
-				Luck:                  blockData["difficulty"].(float64),
+				Luck:                  blockData["luck"].(float64),
 				ServerName:            blockData["server_name"].(string),
 				BlockReward:           uint(blockData["block_reward"].(float64) * WeiRatio),
 				BlockFees:             uint(blockData["block_fees"].(float64) * WeiRatio),
